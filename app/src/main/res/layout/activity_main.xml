@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Immagine che tocca la parte superiore dello schermo -->
+    <ImageView
+        android:id="@+id/topImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/po"
+        android:layout_alignParentTop="true"/>
+
+    <!-- Testo centrato sull'immagine -->
+    <TextView
+        android:id="@+id/centeredText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Il guerriero dragone"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:layout_alignTop="@id/topImageView"
+        android:layout_alignBottom="@id/topImageView"
+        android:layout_alignStart="@id/topImageView"
+        android:layout_alignEnd="@id/topImageView"
+        android:gravity="center"/>
+
+</RelativeLayout>
