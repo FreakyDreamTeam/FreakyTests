@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     Scaffold(
-        bottomBar = { MyBottomAppBar() }  // La tua barra di navigazione in basso
+        bottomBar = { MyBottomAppBar() }
     ) { innerPadding ->
         Box(
             modifier = Modifier
