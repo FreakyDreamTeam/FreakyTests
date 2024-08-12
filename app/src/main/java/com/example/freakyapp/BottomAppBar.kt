@@ -84,7 +84,7 @@ fun MyBottomAppBar(){
                         tint = if(selected.value == Icons.Default.MoreVert) Color.White else Color.DarkGray
                     )
                 }
-            } //mangio negri al vapore
+            }
         }
     ){ paddingValues -> 
         NavHost(
