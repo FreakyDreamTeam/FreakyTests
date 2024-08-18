@@ -26,9 +26,11 @@ class LocationService : Service() {
     // Soglia di distanza (in km) per inviare la notifica (100 metri)
     private val thresholdDistance = 0.1
 
+    //45.058140, 9.489215
+
     // Coordinate target
     private val targetCoordinates = listOf(
-        Pair(45.46427, 9.18951), // Coordinate 1 (ad esempio Milano)
+        Pair(45.05814, 9.48921), // Coordinate 1 (ad esempio Coop Sarmatone)
         Pair(41.90278, 12.49636) // Coordinate 2 (ad esempio Roma)
     )
 
