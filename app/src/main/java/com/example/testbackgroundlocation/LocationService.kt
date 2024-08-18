@@ -61,6 +61,8 @@ class LocationService : Service() {
             .setContentText("Location: null")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setOngoing(true)
+            .setSound(null) // Disabilita il suono della notifica
+            .setVibrate(null) // Disabilita la vibrazione della notifica
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -69,8 +71,12 @@ class LocationService : Service() {
             val channel = NotificationChannel(
                 "location_channel",
                 "Location Notifications",
-                NotificationManager.IMPORTANCE_HIGH
-            )
+                NotificationManager.IMPORTANCE_LOW
+            ).apply {
+                // Disabilita suono e vibrazione per il canale
+                setSound(null, null)
+                enableVibration(false)
+            }
             notificationManager.createNotificationChannel(channel)
         }
 
