@@ -33,6 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TargetActivity">
+            <!-- Se hai bisogno di specificare altre proprietà -->
+        </activity>
     </application>
 
 </manifest>
