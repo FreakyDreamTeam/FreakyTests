@@ -14,6 +14,7 @@ import com.example.freakyapp.pagine_punti.LocationAActivity
 import com.example.freakyapp.pagine_punti.LocationBActivity
 import com.example.freakyapp.pagine_punti.LocationCActivity
 import com.example.freakyapp.pagine_punti.LocationDActivity
+import com.example.freakyapp.pagine_punti.LocationFActivity
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +32,7 @@ class LocationService : Service() {
     private var proximityNotifiedB = false
     private var proximityNotifiedC = false
     private var proximityNotifiedD = false
+    private var proximityNotifiedF = false
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -130,6 +132,7 @@ class LocationService : Service() {
         val locationB = Pair(45.0552, 9.7146) // Finarda
         val locationC = Pair(45.0813, 9.8995) //pontos san nazzaro
         val locationD = Pair(45.0669, 9.7078) //pontos san rocco
+        val locationF = Pair(45.0517, 9.7056)  // Stazione Piacenza
         val proximityThreshold = 0.000675 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
 
         val lat = location.latitude
@@ -168,11 +171,20 @@ class LocationService : Service() {
                     targetActivity = LocationDActivity::class.java
                 )
             }
+            isWithinRange(lat, long, locationF.first, locationF.second, proximityThreshold) && !proximityNotifiedF -> {
+                proximityNotifiedF = true
+                sendNotification(
+                    title = "Sei vicino a Stazione di Piacenza",
+                    message = "Tocca per aprire",
+                    targetActivity = LocationFActivity::class.java
+                )
+            }
             // Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
             !isWithinRange(lat, long, locationA.first, locationA.second, proximityThreshold) -> proximityNotifiedA = false
             !isWithinRange(lat, long, locationB.first, locationB.second, proximityThreshold) -> proximityNotifiedB = false// Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
             !isWithinRange(lat, long, locationC.first, locationC.second, proximityThreshold) -> proximityNotifiedC = false
             !isWithinRange(lat, long, locationD.first, locationD.second, proximityThreshold) -> proximityNotifiedD = false
+            !isWithinRange(lat, long, locationF.first, locationF.second, proximityThreshold) -> proximityNotifiedF = false
         }
     }
 

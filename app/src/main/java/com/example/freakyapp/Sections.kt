@@ -108,37 +108,42 @@ fun Section3() {
 
 @Composable
 fun Section4() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Image(
-                painter = painterResource(id = R.drawable.ponte_san_rocco),
-                contentDescription = "ponte_san_rocco",
+    Column (
+        modifier = Modifier
+            .verticalScroll(rememberScrollState())
+    ){
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp)
-            )
-            Text(text = "1. Ponte di San Rocco")
+                    .fillMaxSize()
+                    .align(Alignment.Center),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(modifier = Modifier.height(20.dp))
 
-            Spacer(modifier = Modifier.height(30.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.ponte_san_rocco),
+                    contentDescription = "ponte_san_rocco",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                )
+                Text(text = "1. Ponte di San Rocco")
+
+                Spacer(modifier = Modifier.height(30.dp))
 
 
-            Image(
-                painter = painterResource(id = R.drawable.ponte_san_nazzaro_218116_660x368),
-                contentDescription = "ponte_san_nazzaro",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp)
-            )
-            Text(text = "2. Ponte di San Nazzaro")
+                Image(
+                    painter = painterResource(id = R.drawable.ponte_san_nazzaro_218116_660x368),
+                    contentDescription = "ponte_san_nazzaro",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                )
+                Text(text = "2. Ponte di San Nazzaro")
 
+            }
         }
     }
 }
