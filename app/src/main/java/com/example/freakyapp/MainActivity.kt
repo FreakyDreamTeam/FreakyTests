@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -24,18 +26,17 @@ import org.osmdroid.config.Configuration
 
 class MainActivity : ComponentActivity() {
 
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1001
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        // Configurazione di osmdroid
-        Configuration.getInstance().load(this, getSharedPreferences("osm_pref", MODE_PRIVATE))
-
         super.onCreate(savedInstanceState)
-
-        // Richiede i permessi prima di impostare il contenuto della UI
-        checkLocationPermission()
-
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.POST_NOTIFICATIONS
+            ),
+            0
+        )
         enableEdgeToEdge()
         setContent {
             FreakyAppTheme {
@@ -44,41 +45,21 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun checkLocationPermission() {
-        // Controlla se il permesso di localizzazione in primo piano è già stato concesso
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Richiede il permesso per la localizzazione in primo piano
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-        } else {
-            // Se il permesso è già stato concesso, richiede il permesso per la localizzazione in background (solo Android 10+)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-                }
-            }
-        }
-    }
-
-    // Gestisce il risultato della richiesta del permesso
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                // Avvia il servizio di localizzazione
-                val intent = Intent(this, LocationService::class.java)
-                startService(intent)
-            } else {
-                Toast.makeText(this, "Permesso di localizzazione negato. L'app potrebbe non funzionare correttamente.", Toast.LENGTH_LONG).show()
-            }
-        }
-
-    }
-
-
-}
 
 @Composable
 fun MainScreen() {
+
+    // Ottieni il contesto
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        Intent(context, LocationService::class.java).apply {
+            action = LocationService.ACTION_START
+            // Avvia il servizio usando il contesto ottenuto
+            context.startService(this)
+        }
+    }
+
     Scaffold(
         bottomBar = { MyBottomAppBar() }
     ) { innerPadding ->
@@ -88,12 +69,4 @@ fun MainScreen() {
                 .padding(innerPadding)
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    FreakyAppTheme {
-        MainScreen()
-    }
-}
+}}
