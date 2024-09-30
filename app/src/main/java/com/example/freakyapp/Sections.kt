@@ -108,44 +108,37 @@ fun Section3() {
 
 @Composable
 fun Section4() {
-    Column {
-        Image(
-            painter = painterResource(id = R.drawable.ponte_san_rocco),
-            contentDescription = "ponte_san_rocco",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(top = 20.dp)
-        )
-        Box(
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp),
-            contentAlignment = Alignment.Center
+                .align(Alignment.Center),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "3\nPonte di San Rocco"
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Image(
+                painter = painterResource(id = R.drawable.ponte_san_rocco),
+                contentDescription = "ponte_san_rocco",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
             )
-        }
+            Text(text = "1. Ponte di San Rocco")
+
+            Spacer(modifier = Modifier.height(30.dp))
 
 
-        Image(
-            painter = painterResource(id = R.drawable.ponte_san_nazzaro_218116_660x368),
-            contentDescription = "ponte_san_nazzaro",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(top = 20.dp)
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(20.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "3\nPonte di San Nazzaro"
+            Image(
+                painter = painterResource(id = R.drawable.ponte_san_nazzaro_218116_660x368),
+                contentDescription = "ponte_san_nazzaro",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
             )
+            Text(text = "2. Ponte di San Nazzaro")
+
         }
     }
 }
