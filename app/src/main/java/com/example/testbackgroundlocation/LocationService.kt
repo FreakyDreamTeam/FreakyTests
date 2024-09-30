@@ -6,8 +6,15 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.location.Location
+import android.os.Build
 import android.os.IBinder
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.example.testbackgroundlocation.ui.pagine_punti.LocationAActivity
+import com.example.testbackgroundlocation.ui.pagine_punti.LocationBActivity
+import com.example.testbackgroundlocation.ui.pagine_punti.LocationCActivity
+import com.example.testbackgroundlocation.ui.pagine_punti.LocationDActivity
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,26 +23,15 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlin.math.*
 
 class LocationService : Service() {
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private lateinit var locationClient: LocationClient
-
-    // Soglia di distanza (in km) per inviare la notifica (100 metri)
-    private val thresholdDistance = 0.1
-
-    //45.058140, 9.489215
-
-    // Coordinate target
-    private val targetCoordinates = listOf(
-        Pair(45.05814, 9.48921), // Coordinate 1 (ad esempio Coop Sarmatone)
-        Pair(41.90278, 12.49636) // Coordinate 2 (ad esempio Roma)
-    )
-
-    // Variabile per tenere traccia dello stato di notifica
-    private var notified = false
+    private var proximityNotifiedA = false
+    private var proximityNotifiedB = false
+    private var proximityNotifiedC = false
+    private var proximityNotifiedD = false
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -58,14 +54,6 @@ class LocationService : Service() {
     }
 
     private fun start() {
-        val notification = NotificationCompat.Builder(this, "location_channel")
-            .setContentTitle("Tracking location...")
-            .setContentText("Location: null")
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .setOngoing(true)
-            .setSound(null) // Disabilita il suono della notifica
-            .setVibrate(null) // Disabilita la vibrazione della notifica
-
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         // Creazione del canale di notifica (necessario per Android O e successivi)
@@ -75,7 +63,6 @@ class LocationService : Service() {
                 "Location Notifications",
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                // Disabilita suono e vibrazione per il canale
                 setSound(null, null)
                 enableVibration(false)
             }
@@ -88,17 +75,35 @@ class LocationService : Service() {
             .onEach { location ->
                 val lat = location.latitude
                 val long = location.longitude
-                val updatedNotification = notification.setContentText(
-                    "Location: ($lat, $long)"
-                )
-                notificationManager.notify(1, updatedNotification.build())
 
-                // Controllo della vicinanza alle coordinate target
-                checkProximity(lat, long)
+                // Aggiorna la notifica con le coordinate correnti
+                val updatedNotification = NotificationCompat.Builder(this, "location_channel")
+                    .setContentTitle("Tracking location...")
+                    .setContentText("Location: ($lat, $long)")
+                    .setSmallIcon(R.drawable.ic_launcher_background)
+                    .setOngoing(true)
+                    .setSound(null) // Silenziosa
+                    .setVibrate(null)
+                    .build()
+
+                notificationManager.notify(1, updatedNotification)
+
+                // Controlla la prossimità a determinati punti
+                checkProximity(location)
             }
             .launchIn(serviceScope)
 
-        startForeground(1, notification.build())
+        // Avvia il servizio in primo piano con una notifica iniziale
+        startForeground(
+            1, NotificationCompat.Builder(this, "location_channel")
+                .setContentTitle("Tracking location...")
+                .setContentText("Location: null")
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setOngoing(true)
+                .setSound(null)
+                .setVibrate(null)
+                .build()
+        )
     }
 
     private fun stop() {
@@ -106,62 +111,95 @@ class LocationService : Service() {
         stopSelf()
     }
 
-    private fun checkProximity(currentLat: Double, currentLon: Double) {
-        var isWithinRange = false
+    override fun onDestroy() {
+        super.onDestroy()
+        serviceScope.cancel()
+    }
 
-        for ((targetLat, targetLon) in targetCoordinates) {
-            val distance = calculateDistance(currentLat, currentLon, targetLat, targetLon)
-            if (distance <= thresholdDistance) {
-                isWithinRange = true
-                break
+    //45.045033, 9.689155 via IV novembre segreteria
+    //45.044898, 9.691746 miva
+    //45.044905, 9.690076 cancello aula magna
+    //45.044893, 9.689791 palestre B
+
+    private fun checkProximity(location: Location) {
+        val locationA = Pair(45.0450, 9.6891) // Coordinate per LocationAActivity (segreteria)
+        val locationB = Pair(45.0448, 9.6917) // Coordinate per LocationBActivity (miva)
+        val locationC = Pair(45.0449, 9.6900) //aula magna
+        val locationD = Pair(45.0448, 9.6897) //palestre B
+        val proximityThreshold = 0.000225 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
+
+        val lat = location.latitude
+        val long = location.longitude
+
+        when {
+            isWithinRange(lat, long, locationA.first, locationA.second, proximityThreshold) && !proximityNotifiedA -> {
+                proximityNotifiedA = true
+                sendNotification(
+                    title = "Sei vicino a Segreteria",
+                    message = "Tocca per aprire Segreteria",
+                    targetActivity = LocationAActivity::class.java
+                )
             }
-        }
-
-        if (isWithinRange && !notified) {
-            sendNotification()
-            notified = true
-        } else if (!isWithinRange && notified) {
-            // Resetta lo stato di notifica quando si esce dalla zona
-            notified = false
+            isWithinRange(lat, long, locationB.first, locationB.second, proximityThreshold) && !proximityNotifiedB -> {
+                proximityNotifiedB = true
+                sendNotification(
+                    title = "Sei vicino a MIVA",
+                    message = "Tocca per aprire MIVA",
+                    targetActivity = LocationBActivity::class.java
+                )
+            }
+            isWithinRange(lat, long, locationC.first, locationC.second, proximityThreshold) && !proximityNotifiedC -> {
+                proximityNotifiedC = true
+                sendNotification(
+                    title = "Sei vicino a aula magna",
+                    message = "Tocca per aprire aula magna",
+                    targetActivity = LocationCActivity::class.java
+                )
+            }
+            isWithinRange(lat, long, locationD.first, locationD.second, proximityThreshold) && !proximityNotifiedD -> {
+                proximityNotifiedD = true
+                sendNotification(
+                    title = "Sei vicino a palestre B",
+                    message = "Tocca per aprire palestre B",
+                    targetActivity = LocationDActivity::class.java
+                )
+            }
+            // Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
+            !isWithinRange(lat, long, locationA.first, locationA.second, proximityThreshold) -> proximityNotifiedA = false
+            !isWithinRange(lat, long, locationB.first, locationB.second, proximityThreshold) -> proximityNotifiedB = false// Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
+            !isWithinRange(lat, long, locationC.first, locationC.second, proximityThreshold) -> proximityNotifiedC = false
+            !isWithinRange(lat, long, locationD.first, locationD.second, proximityThreshold) -> proximityNotifiedD = false
         }
     }
 
-    private fun calculateDistance(
-        lat1: Double, lon1: Double,
-        lat2: Double, lon2: Double
-    ): Double {
-        val earthRadius = 6371.0 // Raggio della Terra in km
-        val dLat = Math.toRadians(lat2 - lat1)
-        val dLon = Math.toRadians(lon2 - lon1)
-        val a = sin(dLat / 2) * sin(dLat / 2) +
-                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) *
-                sin(dLon / 2) * sin(dLon / 2)
-        val c = 2 * atan2(sqrt(a), sqrt(1 - a))
-        return earthRadius * c
+    private fun isWithinRange(
+        lat1: Double, long1: Double, lat2: Double, long2: Double, threshold: Double
+    ): Boolean {
+        val distanceLat = Math.abs(lat1 - lat2)
+        val distanceLong = Math.abs(long1 - long2)
+        return distanceLat < threshold && distanceLong < threshold
     }
 
-    private fun sendNotification() {
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private fun sendNotification(title: String, message: String, targetActivity: Class<*>) {
+        val intent = Intent(this, targetActivity).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
 
-        val intent = Intent(this, TargetActivity::class.java) // Sostituisci con l'attività di destinazione
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
         val notification = NotificationCompat.Builder(this, "location_channel")
-            .setContentTitle("Sei vicino!")
-            .setContentText("Clicca qui per ulteriori informazioni.")
-            .setSmallIcon(R.drawable.ic_launcher_background) // Sostituisci con la tua icona
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build()
 
-        notificationManager.notify(2, notification)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        serviceScope.cancel()
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify((title + message).hashCode(), notification)
     }
 
     companion object {
