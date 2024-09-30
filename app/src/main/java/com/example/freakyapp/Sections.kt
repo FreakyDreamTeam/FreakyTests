@@ -79,7 +79,7 @@ fun Section2() {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "2\nConsorzio di Bonifica"
+            text = "2\nImpianto Idrovoro Finarda"
         )
     }
 }
@@ -108,23 +108,45 @@ fun Section3() {
 
 @Composable
 fun Section4() {
-    Image(
-        painter = painterResource(id = R.drawable.strada),
-        contentDescription = "strada",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(top = 20.dp)
-    )
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "3\nPista ciclabile"
+    Column {
+        Image(
+            painter = painterResource(id = R.drawable.ponte_san_rocco),
+            contentDescription = "ponte_san_rocco",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .padding(top = 20.dp)
         )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "3\nPonte di San Rocco"
+            )
+        }
+
+
+        Image(
+            painter = painterResource(id = R.drawable.ponte_san_nazzaro_218116_660x368),
+            contentDescription = "ponte_san_nazzaro",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+                .padding(top = 20.dp)
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = "3\nPonte di San Nazzaro"
+            )
+        }
     }
 }
 

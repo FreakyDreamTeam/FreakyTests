@@ -32,7 +32,7 @@ fun LocationDPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Palestre")
+            Text(text = "Ponte di San Rocco")
         }
     }
 }

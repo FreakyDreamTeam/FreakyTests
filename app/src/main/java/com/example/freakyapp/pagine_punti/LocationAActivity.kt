@@ -32,7 +32,7 @@ fun LocationAPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Segreteria")
+            Text(text = "Torrione Fodesta")
         }
     }
 }

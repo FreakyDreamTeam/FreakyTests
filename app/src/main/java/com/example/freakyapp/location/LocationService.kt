@@ -120,12 +120,17 @@ class LocationService : Service() {
     //45.044905, 9.690076 cancello aula magna
     //45.044893, 9.689791 palestre B
 
+    //45.05640, 9.70219 torrione fodesta
+    //45.055291, 9.714616 impianto idrovoro finarda
+    //45.081337, 9.899543 pontos san nazzaro
+    //45.066937, 9.707857 pontos san rocco
+
     private fun checkProximity(location: Location) {
-        val locationA = Pair(45.0450, 9.6891) // Coordinate per LocationAActivity (segreteria)
-        val locationB = Pair(45.0448, 9.6917) // Coordinate per LocationBActivity (miva)
-        val locationC = Pair(45.0449, 9.6900) //aula magna
-        val locationD = Pair(45.0448, 9.6897) //palestre B
-        val proximityThreshold = 0.000225 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
+        val locationA = Pair(45.0564, 9.7021) // Torrione fodesta
+        val locationB = Pair(45.0552, 9.7146) // Finarda
+        val locationC = Pair(45.0813, 9.8995) //pontos san nazzaro
+        val locationD = Pair(45.0669, 9.7078) //pontos san rocco
+        val proximityThreshold = 0.000675 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
 
         val lat = location.latitude
         val long = location.longitude
@@ -134,32 +139,32 @@ class LocationService : Service() {
             isWithinRange(lat, long, locationA.first, locationA.second, proximityThreshold) && !proximityNotifiedA -> {
                 proximityNotifiedA = true
                 sendNotification(
-                    title = "Sei vicino a Segreteria",
-                    message = "Tocca per aprire Segreteria",
+                    title = "Sei vicino a Torrione Fodesta",
+                    message = "Tocca per aprire",
                     targetActivity = LocationAActivity::class.java
                 )
             }
             isWithinRange(lat, long, locationB.first, locationB.second, proximityThreshold) && !proximityNotifiedB -> {
                 proximityNotifiedB = true
                 sendNotification(
-                    title = "Sei vicino a MIVA",
-                    message = "Tocca per aprire MIVA",
+                    title = "Sei vicino a Impianto idrovoro Finarda",
+                    message = "Tocca per aprire",
                     targetActivity = LocationBActivity::class.java
                 )
             }
             isWithinRange(lat, long, locationC.first, locationC.second, proximityThreshold) && !proximityNotifiedC -> {
                 proximityNotifiedC = true
                 sendNotification(
-                    title = "Sei vicino a aula magna",
-                    message = "Tocca per aprire aula magna",
+                    title = "Sei vicino a Ponte di San Nazzaro",
+                    message = "Tocca per aprire",
                     targetActivity = LocationCActivity::class.java
                 )
             }
             isWithinRange(lat, long, locationD.first, locationD.second, proximityThreshold) && !proximityNotifiedD -> {
                 proximityNotifiedD = true
                 sendNotification(
-                    title = "Sei vicino a palestre B",
-                    message = "Tocca per aprire palestre B",
+                    title = "Sei vicino a Ponte di San Rocco",
+                    message = "Tocca per aprire",
                     targetActivity = LocationDActivity::class.java
                 )
             }

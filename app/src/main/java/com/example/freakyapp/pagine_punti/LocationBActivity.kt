@@ -32,7 +32,7 @@ fun LocationBPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Miva")
+            Text(text = "Impianto idrovoro Finarda")
         }
     }
 }
