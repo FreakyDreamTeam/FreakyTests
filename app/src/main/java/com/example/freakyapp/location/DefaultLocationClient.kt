@@ -1,4 +1,4 @@
-package com.example.freakyapp
+package com.example.freakyapp.location
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class DefaultLocationClient (
     private val context: Context,
     private val client: FusedLocationProviderClient
-) : LocationClient{
+) : LocationClient {
     @SuppressLint("MissingPermission")
     override fun getLocationUpdates(interval: Long): Flow<Location> {
         return callbackFlow {

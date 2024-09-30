@@ -1,12 +1,8 @@
 package com.example.freakyapp
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -18,9 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import com.example.freakyapp.location.LocationService
 import com.example.freakyapp.ui.theme.FreakyAppTheme
 import org.osmdroid.config.Configuration
 

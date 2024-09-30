@@ -1,4 +1,4 @@
-package com.example.freakyapp
+package com.example.freakyapp.location
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -7,10 +7,9 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.location.Location
-import android.os.Build
 import android.os.IBinder
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.example.freakyapp.R
 import com.example.freakyapp.pagine_punti.LocationAActivity
 import com.example.freakyapp.pagine_punti.LocationBActivity
 import com.example.freakyapp.pagine_punti.LocationCActivity

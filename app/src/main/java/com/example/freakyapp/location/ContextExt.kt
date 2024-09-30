@@ -1,4 +1,4 @@
-package com.example.freakyapp
+package com.example.freakyapp.location
 
 import android.content.Context
 import android.content.pm.PackageManager
