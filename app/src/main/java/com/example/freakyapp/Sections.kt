@@ -34,8 +34,100 @@ fun Sections() {
         composable("section1") { Section1() }
         composable("section2") { Section2() }
         composable("section3") { Section3() }
+        composable("section4") { Section4() }
     }
 }
+
+
+@Composable
+fun Section1() {
+    Image(
+        painter = painterResource(id = R.drawable.torrione_fodesta),
+        contentDescription = "torrione_fodesta",
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+            .padding(top = 20.dp)
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "1\nTorrione Fodesta"
+        )
+    }
+}
+
+
+@Composable
+fun Section2() {
+    Image(
+        painter = painterResource(id = R.drawable.consorzio_bonifica),
+        contentDescription = "consorzio_bonifica",
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+            .padding(top = 20.dp)
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "2\nConsorzio di Bonifica"
+        )
+    }
+}
+
+@Composable
+fun Section3() {
+    Image(
+        painter = painterResource(id = R.drawable.natura),
+        contentDescription = "natura",
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+            .padding(top = 20.dp)
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "3\nScorcio del Po"
+        )
+    }
+}
+
+@Composable
+fun Section4() {
+    Image(
+        painter = painterResource(id = R.drawable.strada),
+        contentDescription = "strada",
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+            .padding(top = 20.dp)
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = "3\nPista ciclabile"
+        )
+    }
+}
+
 @Composable
 fun SectionsContent(navController: NavController) {
     Column(
@@ -54,8 +146,8 @@ fun SectionsContent(navController: NavController) {
 
                 // Prima immagine - Diventa un bottone che porta a Section1
                 Image(
-                    painter = painterResource(id = R.drawable.gru),
-                    contentDescription = "gru",
+                    painter = painterResource(id = R.drawable.torrione_fodesta),
+                    contentDescription = "torrione_fodesta",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp)
@@ -63,7 +155,7 @@ fun SectionsContent(navController: NavController) {
                             navController.navigate("section1")
                         }
                 )
-                Text(text = "gru")
+                Text(text = "Storia ed architettura")
 
                 Spacer(modifier = Modifier.height(50.dp))
 
@@ -71,8 +163,8 @@ fun SectionsContent(navController: NavController) {
 
                 // Seconda immagine - Per esempio, potrebbe navigare a un'altra sezione
                 Image(
-                    painter = painterResource(id = R.drawable.vipera),
-                    contentDescription = "vipera",
+                    painter = painterResource(id = R.drawable.consorzio_bonifica),
+                    contentDescription = "consorzio_bonifica",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp)
@@ -80,7 +172,7 @@ fun SectionsContent(navController: NavController) {
                             navController.navigate("section2")
                         }
                 )
-                Text(text = "vipera")
+                Text(text = "Economia circolare")
 
                 Spacer(modifier = Modifier.height(50.dp))
 
@@ -88,8 +180,8 @@ fun SectionsContent(navController: NavController) {
 
                 // Terza immagine - Ancora un altro esempio
                 Image(
-                    painter = painterResource(id = R.drawable.scimmia),
-                    contentDescription = "scimmia",
+                    painter = painterResource(id = R.drawable.natura),
+                    contentDescription = "natura",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp)
@@ -97,76 +189,25 @@ fun SectionsContent(navController: NavController) {
                             navController.navigate("section3")
                         }
                 )
-                Text(text = "scimmia con vipera")
+                Text(text = "Natura e biodiversità")
+
+                Spacer(modifier = Modifier.height(50.dp))
+
+                // quarta immagine - Ancora un altro esempio
+                Image(
+                    painter = painterResource(id = R.drawable.strada),
+                    contentDescription = "strada",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                        .clickable {
+                            navController.navigate("section4")
+                        }
+                )
+                Text(text = "Viabilità e turismo")
 
                 Spacer(modifier = Modifier.height(50.dp))
             }
         }
-    }
-}
-
-@Composable
-fun Section1() {
-    Image(
-        painter = painterResource(id = R.drawable.gru),
-        contentDescription = "gru",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(top = 20.dp)
-    )
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "1\ngru"
-        )
-    }
-}
-
-@Composable
-fun Section2() {
-    Image(
-        painter = painterResource(id = R.drawable.vipera),
-        contentDescription = "vipera",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(top = 20.dp)
-    )
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "2\nvipera"
-        )
-    }
-}
-
-@Composable
-fun Section3() {
-    Image(
-        painter = painterResource(id = R.drawable.scimmia),
-        contentDescription = "scimmia",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(top = 20.dp)
-    )
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "3\nscimmia"
-        )
     }
 }
