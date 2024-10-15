@@ -36,6 +36,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".pagine_punti.LocationAActivity" />
+        <activity android:name=".pagine_punti.LocationBActivity" />
+        <activity android:name=".pagine_punti.LocationCActivity" />
+        <activity android:name=".pagine_punti.LocationDActivity" />
+        <activity android:name=".pagine_punti.LocViaNasoliniActivity" />
         <service
             android:name=".location.LocationService"
             android:foregroundServiceType="location" />
