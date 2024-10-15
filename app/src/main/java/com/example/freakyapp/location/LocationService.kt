@@ -10,6 +10,7 @@ import android.location.Location
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.example.freakyapp.R
+import com.example.freakyapp.pagine_punti.LocViaNasoliniActivity
 import com.example.freakyapp.pagine_punti.LocationAActivity
 import com.example.freakyapp.pagine_punti.LocationBActivity
 import com.example.freakyapp.pagine_punti.LocationCActivity
@@ -202,7 +203,7 @@ class LocationService : Service() {
                 sendNotification(
                     title = "Sei vicino a Via Nasolini",
                     message = "Tocca per aprire",
-                    targetActivity = LocationFActivity::class.java
+                    targetActivity = LocViaNasoliniActivity::class.java
                 )
             }
             // Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
