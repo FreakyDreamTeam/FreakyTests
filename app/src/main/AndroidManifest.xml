@@ -41,6 +41,14 @@
         <activity android:name=".pagine_punti.LocationCActivity" />
         <activity android:name=".pagine_punti.LocationDActivity" />
         <activity android:name=".pagine_punti.LocViaNasoliniActivity" />
+        <activity android:name=".pagine_punti.LocKaefuActivity" />
+        <activity android:name=".pagine_punti.LocSegreteriaActivity" />
+        <activity android:name=".pagine_punti.LocMagnaActivity" />
+        <activity android:name=".pagine_punti.LocPalazzinaDActivity" />
+        <activity android:name=".pagine_punti.LocMivaActivity" />
+        <activity android:name=".pagine_punti.LocCheopeActivity" />
+        <activity android:name=".pagine_punti.LocUnieuroActivity" />
+        <activity android:name=".pagine_punti.LocMcActivity" />
         <service
             android:name=".location.LocationService"
             android:foregroundServiceType="location" />
