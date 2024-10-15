@@ -33,7 +33,7 @@ fun LocMivaPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Kaefu")
+            Text(text = "Miva")
         }
     }
 }

@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocCheopeActivity : ComponentActivity(){
+class LocVia24MaggioActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocCheopePage()
+            LocVia24MaggioPage()
         }
     }
 }
 
 @Composable
-fun LocCheopePage(){
+fun LocVia24MaggioPage(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocCheopePage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Cheope")
+            Text(text = "Via 24 Maggio")
         }
     }
 }

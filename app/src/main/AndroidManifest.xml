@@ -49,6 +49,13 @@
         <activity android:name=".pagine_punti.LocCheopeActivity" />
         <activity android:name=".pagine_punti.LocUnieuroActivity" />
         <activity android:name=".pagine_punti.LocMcActivity" />
+        <activity android:name=".pagine_punti.LocAssicurazioneActivity" />
+        <activity android:name=".pagine_punti.LocBarrieraGenovaActivity" />
+        <activity android:name=".pagine_punti.LocIngressoBActivity" />
+        <activity android:name=".pagine_punti.LocPalestra1Activity" />
+        <activity android:name=".pagine_punti.LocPonteCActivity" />
+        <activity android:name=".pagine_punti.LocVia24MaggioActivity" />
+        <activity android:name=".pagine_punti.LocPorscheActivity" />
         <service
             android:name=".location.LocationService"
             android:foregroundServiceType="location" />

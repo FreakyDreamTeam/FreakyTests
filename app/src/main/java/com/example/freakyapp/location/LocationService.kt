@@ -10,6 +10,22 @@ import android.location.Location
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.example.freakyapp.R
+import com.example.freakyapp.pagine_punti.LocAssicurazioneActivity
+import com.example.freakyapp.pagine_punti.LocBarrieraGenovaActivity
+import com.example.freakyapp.pagine_punti.LocCheopeActivity
+import com.example.freakyapp.pagine_punti.LocIngressoBActivity
+import com.example.freakyapp.pagine_punti.LocKaefuActivity
+import com.example.freakyapp.pagine_punti.LocMagnaActivity
+import com.example.freakyapp.pagine_punti.LocMcActivity
+import com.example.freakyapp.pagine_punti.LocMivaActivity
+import com.example.freakyapp.pagine_punti.LocPalazzinaDActivity
+import com.example.freakyapp.pagine_punti.LocPalestra1Activity
+import com.example.freakyapp.pagine_punti.LocPonteCActivity
+import com.example.freakyapp.pagine_punti.LocPorscheActivity
+import com.example.freakyapp.pagine_punti.LocSegreteriaActivity
+import com.example.freakyapp.pagine_punti.LocUnieuroActivity
+import com.example.freakyapp.pagine_punti.LocVia24MaggioActivity
+import com.example.freakyapp.pagine_punti.LocViaNasoliniActivity
 import com.example.freakyapp.pagine_punti.LocationAActivity
 import com.example.freakyapp.pagine_punti.LocationBActivity
 import com.example.freakyapp.pagine_punti.LocationCActivity
@@ -34,6 +50,21 @@ class LocationService : Service() {
     private var proximityNotifiedD = false
     private var proximityNotifiedF = false
     private var proximityNotifiedViaNasolini = false
+    private var proximityNotifiedKaefu = false
+    private var proximityNotifiedSegreteria = false
+    private var proximityNotifiedMagna = false
+    private var proximityNotifiedPalazzinaD = false
+    private var proximityNotifiedMiva = false
+    private var proximityNotifiedCheope = false
+    private var proximityNotifiedUnieuro = false
+    private var proximityNotifiedMc = false
+    private var proximityNotifiedPorsche = false
+    private var proximityNotifiedVia24Maggio = false
+    private var proximityNotifiedIngressoB = false
+    private var proximityNotifiedAssicurazione = false
+    private var proximityNotifiedBarrieraGenova = false
+    private var proximityNotifiedPonteC = false
+    private var proximityNotifiedPalestra1 = false
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -202,9 +233,144 @@ class LocationService : Service() {
                 sendNotification(
                     title = "Sei vicino a Via Nasolini",
                     message = "Tocca per aprire",
-                    targetActivity = LocationFActivity::class.java
+                    targetActivity = LocViaNasoliniActivity::class.java
                 )
             }
+            isWithinRange(lat, long, locKaefu.first, locKaefu.second, proximityThreshold) && !proximityNotifiedKaefu -> {
+                proximityNotifiedKaefu = true
+                sendNotification(
+                    title = "Sei vicino al Kaefu pazzo matto",
+                    message = "Tocca per aprire",
+                    targetActivity = LocKaefuActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locSegreteria.first, locSegreteria.second, proximityThreshold) && !proximityNotifiedSegreteria -> {
+                proximityNotifiedSegreteria = true
+                sendNotification(
+                    title = "Sei vicino alla segreteria del kikko sgravato",
+                    message = "Tocca per aprire",
+                    targetActivity = LocSegreteriaActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locMagna.first, locMagna.second, proximityThreshold) && !proximityNotifiedMagna -> {
+                proximityNotifiedMagna = true
+                sendNotification(
+                    title = "Sei vicino all'aula magna'",
+                    message = "Tocca per aprire",
+                    targetActivity = LocMagnaActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locPalazzinaD.first, locPalazzinaD.second, proximityThreshold) && !proximityNotifiedPalazzinaD -> {
+                proximityNotifiedPalazzinaD = true
+                sendNotification(
+                    title = "Sei vicino alla palazzina puzzolente",
+                    message = "Tocca per aprire",
+                    targetActivity = LocPalazzinaDActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locMiva.first, locMiva.second, proximityThreshold) && !proximityNotifiedMiva -> {
+                proximityNotifiedMiva = true
+                sendNotification(
+                    title = "Sei vicino al territorio dei negri",
+                    message = "Tocca per aprire",
+                    targetActivity = LocMivaActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locCheope.first, locCheope.second, proximityThreshold) && !proximityNotifiedCheope -> {
+                proximityNotifiedCheope = true
+                sendNotification(
+                    title = "Sei vicino all'accampamento dei negri'",
+                    message = "Tocca per aprire",
+                    targetActivity = LocCheopeActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locUnieuro.first, locUnieuro.second, proximityThreshold) && !proximityNotifiedUnieuro -> {
+                proximityNotifiedUnieuro = true
+                sendNotification(
+                    title = "Sei vicino all'unieuro, attento al portafolgio",
+                    message = "Tocca per aprire",
+                    targetActivity = LocUnieuroActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locMc.first, locMc.second, proximityThreshold) && !proximityNotifiedMc -> {
+                proximityNotifiedMc = true
+                sendNotification(
+                    title = "Sei vicino all'approvigionamento dei negri",
+                    message = "Tocca per aprire",
+                    targetActivity = LocMcActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locPorsche.first, locPorsche.second, proximityThreshold) && !proximityNotifiedPorsche -> {
+                proximityNotifiedPorsche = true
+                sendNotification(
+                    title = "Sei vicino a Porsche",
+                    message = "Tocca per aprire",
+                    targetActivity = LocPorscheActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locVia24Maggio.first, locVia24Maggio.second, proximityThreshold) && !proximityNotifiedVia24Maggio -> {
+                proximityNotifiedVia24Maggio = true
+                sendNotification(
+                    title = "Sei vicino a Via 24 Maggio",
+                    message = "Tocca per aprire",
+                    targetActivity = LocVia24MaggioActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locAssicurazione.first, locAssicurazione.second, proximityThreshold) && !proximityNotifiedAssicurazione -> {
+                proximityNotifiedAssicurazione = true
+                sendNotification(
+                    title = "Sei vicino ad Assicurazione",
+                    message = "Tocca per aprire",
+                    targetActivity = LocAssicurazioneActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locBarrieraGenova.first, locBarrieraGenova.second, proximityThreshold) && !proximityNotifiedBarrieraGenova -> {
+                proximityNotifiedBarrieraGenova = true
+                sendNotification(
+                    title = "Sei vicino a Barriera Genova",
+                    message = "Tocca per aprire",
+                    targetActivity = LocBarrieraGenovaActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locIngressoB.first, locIngressoB.second, proximityThreshold) && !proximityNotifiedIngressoB -> {
+                proximityNotifiedIngressoB = true
+                sendNotification(
+                    title = "Sei vicino a Ingresso B",
+                    message = "Tocca per aprire",
+                    targetActivity = LocIngressoBActivity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locPalestra1.first, locPalestra1.second, proximityThreshold) && !proximityNotifiedPalestra1 -> {
+                proximityNotifiedPalestra1 = true
+                sendNotification(
+                    title = "Sei vicino a Palestra 1'",
+                    message = "Tocca per aprire",
+                    targetActivity = LocPalestra1Activity::class.java
+                )
+            }
+
+            isWithinRange(lat, long, locPonteC.first, locPonteC.second, proximityThreshold) && !proximityNotifiedPonteC -> {
+                proximityNotifiedPonteC = true
+                sendNotification(
+                    title = "Sei vicino a Ponte C",
+                    message = "Tocca per aprire",
+                    targetActivity = LocPonteCActivity::class.java
+                )
+            }
+
             // Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
             !isWithinRange(lat, long, locationA.first, locationA.second, proximityThreshold) -> proximityNotifiedA = false
             !isWithinRange(lat, long, locationB.first, locationB.second, proximityThreshold) -> proximityNotifiedB = false// Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
@@ -212,6 +378,21 @@ class LocationService : Service() {
             !isWithinRange(lat, long, locationD.first, locationD.second, proximityThreshold) -> proximityNotifiedD = false
             !isWithinRange(lat, long, locationF.first, locationF.second, proximityThreshold) -> proximityNotifiedF = false
             !isWithinRange(lat, long, locViaNasolini.first, locViaNasolini.second, proximityThreshold) -> proximityNotifiedViaNasolini = false
+            !isWithinRange(lat, long, locAssicurazione.first, locAssicurazione.second, proximityThreshold) -> proximityNotifiedAssicurazione = false
+            !isWithinRange(lat, long, locBarrieraGenova.first, locBarrieraGenova.second, proximityThreshold) -> proximityNotifiedBarrieraGenova = false
+            !isWithinRange(lat, long, locCheope.first, locCheope.second, proximityThreshold) -> proximityNotifiedCheope = false
+            !isWithinRange(lat, long, locIngressoB.first, locIngressoB.second, proximityThreshold) -> proximityNotifiedIngressoB = false
+            !isWithinRange(lat, long, locKaefu.first, locKaefu.second, proximityThreshold) -> proximityNotifiedKaefu = false
+            !isWithinRange(lat, long, locMagna.first, locMagna.second, proximityThreshold) -> proximityNotifiedMagna = false
+            !isWithinRange(lat, long, locMc.first, locMc.second, proximityThreshold) -> proximityNotifiedMc = false
+            !isWithinRange(lat, long, locMiva.first, locMiva.second, proximityThreshold) -> proximityNotifiedMiva = false
+            !isWithinRange(lat, long, locPalazzinaD.first, locPalazzinaD.second, proximityThreshold) -> proximityNotifiedPalazzinaD = false
+            !isWithinRange(lat, long, locPalestra1.first, locPalestra1.second, proximityThreshold) -> proximityNotifiedPalestra1 = false
+            !isWithinRange(lat, long, locPonteC.first, locPonteC.second, proximityThreshold) -> proximityNotifiedPonteC = false
+            !isWithinRange(lat, long, locPorsche.first, locPorsche.second, proximityThreshold) -> proximityNotifiedPorsche = false
+            !isWithinRange(lat, long, locSegreteria.first, locSegreteria.second, proximityThreshold) -> proximityNotifiedSegreteria = false
+            !isWithinRange(lat, long, locUnieuro.first, locUnieuro.second, proximityThreshold) -> proximityNotifiedUnieuro = false
+            !isWithinRange(lat, long, locVia24Maggio.first, locVia24Maggio.second, proximityThreshold) -> proximityNotifiedVia24Maggio = false
         }
     }
 

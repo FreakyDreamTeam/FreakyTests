@@ -33,7 +33,7 @@ fun LocPalazzinaDPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Kaefu")
+            Text(text = "Palazzina D")
         }
     }
 }

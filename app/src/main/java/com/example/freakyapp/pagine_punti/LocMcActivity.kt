@@ -33,7 +33,7 @@ fun LocMcPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Kaefu")
+            Text(text = "Mc")
         }
     }
 }
