@@ -33,6 +33,7 @@ class LocationService : Service() {
     private var proximityNotifiedC = false
     private var proximityNotifiedD = false
     private var proximityNotifiedF = false
+    private var proximityNotifiedViaNasolini = false
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -128,12 +129,29 @@ class LocationService : Service() {
     //45.066937, 9.707857 pontos san rocco
 
     private fun checkProximity(location: Location) {
+        val locKaefu = Pair(45.045596484882495, 9.68391723041813)
+        val locSegreteria = Pair(45.045088, 9.689127)
+        val locMagna = Pair(45.04488297840383, 9.69051569813549)
+        val locPalazzinaD = Pair(45.04459450460115, 9.691312784599218)
+        val locMiva = Pair(45.04486912707834, 9.691730345675278)
+        val locCheope = Pair(45.04576896475646, 9.687562865342748)
+        val locUnieuro = Pair(45.05423563404899, 9.673924335025156)
+        val locMc = Pair(45.05471521895691, 9.656061633442667)
+        val locPorsche = Pair(45.05513709182227, 9.64521798075403)
+        val locVia24Maggio = Pair(45.05263114136313, 9.676769886599676)
+        val locViaNasolini = Pair(45.04421515600366, 9.691453450875652)
+        val locIngressoB = Pair(45.044977700997414, 9.68926779912927)
+        val locAssicurazione = Pair(45.0459934051227, 9.684511251921448)
+        val locBarrieraGenova = Pair(45.046498955529934, 9.685403188416533)
+        val locPonteC = Pair(45.04424172008859, 9.689251580411826)
+        val locPalestra1 = Pair(45.044865076674824, 9.690070537357856)
+
         val locationA = Pair(45.0564, 9.7021) // Torrione fodesta
         val locationB = Pair(45.0552, 9.7146) // Finarda
         val locationC = Pair(45.0813, 9.8995) //pontos san nazzaro
         val locationD = Pair(45.0669, 9.7078) //pontos san rocco
         val locationF = Pair(45.0517, 9.7056)  // Stazione Piacenza
-        val proximityThreshold = 0.000675 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
+        val proximityThreshold = 0.00016875 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
 
         val lat = location.latitude
         val long = location.longitude
@@ -179,12 +197,21 @@ class LocationService : Service() {
                     targetActivity = LocationFActivity::class.java
                 )
             }
+            isWithinRange(lat, long, locViaNasolini.first, locViaNasolini.second, proximityThreshold) && !proximityNotifiedViaNasolini -> {
+                proximityNotifiedViaNasolini = true
+                sendNotification(
+                    title = "Sei vicino a Via Nasolini",
+                    message = "Tocca per aprire",
+                    targetActivity = LocationFActivity::class.java
+                )
+            }
             // Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
             !isWithinRange(lat, long, locationA.first, locationA.second, proximityThreshold) -> proximityNotifiedA = false
             !isWithinRange(lat, long, locationB.first, locationB.second, proximityThreshold) -> proximityNotifiedB = false// Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
             !isWithinRange(lat, long, locationC.first, locationC.second, proximityThreshold) -> proximityNotifiedC = false
             !isWithinRange(lat, long, locationD.first, locationD.second, proximityThreshold) -> proximityNotifiedD = false
             !isWithinRange(lat, long, locationF.first, locationF.second, proximityThreshold) -> proximityNotifiedF = false
+            !isWithinRange(lat, long, locViaNasolini.first, locViaNasolini.second, proximityThreshold) -> proximityNotifiedViaNasolini = false
         }
     }
 
@@ -201,8 +228,11 @@ class LocationService : Service() {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 
+        // Usa un requestCode unico basato sull'hash di titolo + messaggio
+        val requestCode = (title + message).hashCode()
+
         val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
         val notification = NotificationCompat.Builder(this, "location_channel")
