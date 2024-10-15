@@ -56,6 +56,7 @@
         <activity android:name=".pagine_punti.LocPonteCActivity" />
         <activity android:name=".pagine_punti.LocVia24MaggioActivity" />
         <activity android:name=".pagine_punti.LocPorscheActivity" />
+        <activity android:name=".pagine_punti.LocViaNovaActivity" />
         <service
             android:name=".location.LocationService"
             android:foregroundServiceType="location" />

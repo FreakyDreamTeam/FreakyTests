@@ -26,6 +26,7 @@ import com.example.freakyapp.pagine_punti.LocSegreteriaActivity
 import com.example.freakyapp.pagine_punti.LocUnieuroActivity
 import com.example.freakyapp.pagine_punti.LocVia24MaggioActivity
 import com.example.freakyapp.pagine_punti.LocViaNasoliniActivity
+import com.example.freakyapp.pagine_punti.LocViaNovaActivity
 import com.example.freakyapp.pagine_punti.LocationAActivity
 import com.example.freakyapp.pagine_punti.LocationBActivity
 import com.example.freakyapp.pagine_punti.LocationCActivity
@@ -65,6 +66,7 @@ class LocationService : Service() {
     private var proximityNotifiedBarrieraGenova = false
     private var proximityNotifiedPonteC = false
     private var proximityNotifiedPalestra1 = false
+    private var proximityNotifiedViaNova = false
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -176,6 +178,7 @@ class LocationService : Service() {
         val locBarrieraGenova = Pair(45.046498955529934, 9.685403188416533)
         val locPonteC = Pair(45.04424172008859, 9.689251580411826)
         val locPalestra1 = Pair(45.044865076674824, 9.690070537357856)
+        val locViaNova = Pair(45.05023923145314, 9.689404939540466)
 
         val locationA = Pair(45.0564, 9.7021) // Torrione fodesta
         val locationB = Pair(45.0552, 9.7146) // Finarda
@@ -371,6 +374,15 @@ class LocationService : Service() {
                 )
             }
 
+            isWithinRange(lat, long, locViaNova.first, locViaNova.second, proximityThreshold) && !proximityNotifiedViaNova -> {
+                proximityNotifiedViaNova = true
+                sendNotification(
+                    title = "Sei vicino a Via Nova",
+                    message = "Tocca per aprire",
+                    targetActivity = LocViaNovaActivity::class.java
+                )
+            }
+
             // Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
             !isWithinRange(lat, long, locationA.first, locationA.second, proximityThreshold) -> proximityNotifiedA = false
             !isWithinRange(lat, long, locationB.first, locationB.second, proximityThreshold) -> proximityNotifiedB = false// Se esci dal range, resetta lo stato per ricevere nuovamente le notifiche
@@ -393,6 +405,7 @@ class LocationService : Service() {
             !isWithinRange(lat, long, locSegreteria.first, locSegreteria.second, proximityThreshold) -> proximityNotifiedSegreteria = false
             !isWithinRange(lat, long, locUnieuro.first, locUnieuro.second, proximityThreshold) -> proximityNotifiedUnieuro = false
             !isWithinRange(lat, long, locVia24Maggio.first, locVia24Maggio.second, proximityThreshold) -> proximityNotifiedVia24Maggio = false
+            !isWithinRange(lat, long, locViaNova.first, locViaNova.second, proximityThreshold) -> proximityNotifiedViaNova = false
         }
     }
 
