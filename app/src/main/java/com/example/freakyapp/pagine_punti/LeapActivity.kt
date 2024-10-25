@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocPalestra1Activity : ComponentActivity(){
+class LeapActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocPalestra1Page()
+            leap()
         }
     }
 }
 
 @Composable
-fun LocPalestra1Page(){
+fun leap(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocPalestra1Page(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Palestra 1")
+            Text(text = "Assicurazione")
         }
     }
 }

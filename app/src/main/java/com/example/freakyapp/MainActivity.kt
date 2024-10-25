@@ -1,6 +1,5 @@
 package com.example.freakyapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.activity.ComponentActivity
@@ -14,11 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.app.ActivityCompat
-import com.example.freakyapp.location.LocationService
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.freakyapp.ui.theme.FreakyAppTheme
 import org.osmdroid.config.Configuration
-
 
 class MainActivity : ComponentActivity() {
 
@@ -40,33 +41,59 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FreakyAppTheme {
-                MainScreen()  // Chiamata alla funzione principale che gestisce l'UI
+                MainScreen()
             }
         }
     }
 
+    @Composable
+    fun MainScreen() {
+        // Ottieni il contesto
+        val navController = rememberNavController()
 
-@Composable
-fun MainScreen() {
-
-    // Ottieni il contesto
-    val context = LocalContext.current
-
-    LaunchedEffect(Unit) {
-        Intent(context, LocationService::class.java).apply {
-            action = LocationService.ACTION_START
-            // Avvia il servizio usando il contesto ottenuto
-            context.startService(this)
+        Scaffold(
+            bottomBar = { MyBottomAppBar() }  // Barra inferiore di navigazione
+        ) { innerPadding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
+                NavHost(
+                    navController = navController,
+                    startDestination = "home"  // Schermata iniziale
+                ) {
+                    composable("home") { Home() }
+                    composable("map") { Map(navController) }  // Schermata della mappa
+                    composable("sections") { Sections() }  // Schermata delle sezioni
+                }
+            }
         }
     }
 
-    Scaffold(
-        bottomBar = { MyBottomAppBar() }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        )
+    @Preview
+    @Composable
+    fun MainScreen2() {
+        // Ottieni il contesto
+        val navController = rememberNavController()
+
+        Scaffold(
+            bottomBar = { MyBottomAppBar() }  // Barra inferiore di navigazione
+        ) { innerPadding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
+                NavHost(
+                    navController = navController,
+                    startDestination = "home"  // Schermata iniziale
+                ) {
+                    composable("home") { Home() }
+                    composable("map") { Map(navController) }  // Schermata della mappa
+                    composable("sections") { Sections() }  // Schermata delle sezioni
+                }
+            }
+        }
     }
-}}
+}

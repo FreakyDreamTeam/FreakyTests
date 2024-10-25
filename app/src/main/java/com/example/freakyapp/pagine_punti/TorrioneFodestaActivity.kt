@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocPalazzinaDActivity : ComponentActivity(){
+class TorrioneFodestaActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocPalazzinaDPage()
+            torrione()
         }
     }
 }
 
 @Composable
-fun LocPalazzinaDPage(){
+fun torrione(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocPalazzinaDPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Palazzina D")
+            Text(text = "Assicurazione")
         }
     }
 }

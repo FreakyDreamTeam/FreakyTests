@@ -11,19 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
-class LocationFActivity : ComponentActivity(){
+class ImpiantoIdrovoroFinardaActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocationFPage()
+            finarda()
         }
     }
 }
 
 @Composable
-fun LocationFPage(){
+fun finarda(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -32,7 +33,7 @@ fun LocationFPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Stazione di Piacenza")
+            Text(text = "Assicurazione")
         }
     }
 }

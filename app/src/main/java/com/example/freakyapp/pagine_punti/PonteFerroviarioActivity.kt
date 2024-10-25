@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocBarrieraGenovaActivity : ComponentActivity(){
+class PonteFerroviarioActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocBarrieraGenovaPage()
+            ferroviario()
         }
     }
 }
 
 @Composable
-fun LocBarrieraGenovaPage(){
+fun ferroviario(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocBarrieraGenovaPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "B. Genova")
+            Text(text = "Assicurazione")
         }
     }
 }

@@ -11,19 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
-class LocationDActivity : ComponentActivity(){
+class PonteDelleCeramicheActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocationDPage()
+            ceramiche()
         }
     }
 }
 
 @Composable
-fun LocationDPage(){
+fun ceramiche(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -32,7 +33,7 @@ fun LocationDPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Ponte di San Rocco")
+            Text(text = "Assicurazione")
         }
     }
 }

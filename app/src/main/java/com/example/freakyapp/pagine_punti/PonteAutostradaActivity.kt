@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocAssicurazioneActivity : ComponentActivity(){
+class PonteAutostradaActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocAssicurazionePage()
+            autostrada()
         }
     }
 }
 
 @Composable
-fun LocAssicurazionePage(){
+fun autostrada(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier

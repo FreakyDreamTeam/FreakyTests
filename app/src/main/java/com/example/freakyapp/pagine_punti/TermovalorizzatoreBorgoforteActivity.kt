@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocMagnaActivity : ComponentActivity(){
+class TermovalorizzatoreBorgoforteActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocMagnaPage()
+            term()
         }
     }
 }
 
 @Composable
-fun LocMagnaPage(){
+fun term(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocMagnaPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Magna")
+            Text(text = "Assicurazione")
         }
     }
 }

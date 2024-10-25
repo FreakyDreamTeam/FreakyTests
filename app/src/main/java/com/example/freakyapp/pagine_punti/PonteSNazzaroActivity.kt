@@ -11,20 +11,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 
-class LocIngressoBActivity : ComponentActivity(){
+class PonteSNazzaroActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocIngressoBPage()
+            pontenazzaro()
         }
     }
 }
 
 @Composable
-fun LocIngressoBPage(){
+fun pontenazzaro(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +32,7 @@ fun LocIngressoBPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Ingresso B")
+            Text(text = "Assicurazione")
         }
     }
 }

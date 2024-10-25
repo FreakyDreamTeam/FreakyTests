@@ -12,18 +12,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
-class LocationBActivity : ComponentActivity(){
+class ImpiantoIdrovoroBorgoforteActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocationBPage()
+            borgo()
         }
     }
 }
 
 @Composable
-fun LocationBPage(){
+fun borgo(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -32,7 +32,7 @@ fun LocationBPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Impianto idrovoro Finarda")
+            Text(text = "Assicurazione")
         }
     }
 }

@@ -11,19 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
-class LocationAActivity : ComponentActivity(){
+class NinoBixioActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocationAPage()
+            nino()
         }
     }
 }
 
 @Composable
-fun LocationAPage(){
+fun nino(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -32,7 +33,7 @@ fun LocationAPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Torrione Fodesta")
+            Text(text = "Assicurazione")
         }
     }
 }

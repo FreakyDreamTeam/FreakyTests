@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocViaNasoliniActivity : ComponentActivity(){
+class AgriturismoBoschiCelatiActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocViaNasoliniPage()
+            bos()
         }
     }
 }
 
 @Composable
-fun LocViaNasoliniPage(){
+fun bos(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,23 +33,7 @@ fun LocViaNasoliniPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Via Nasolini")
-        }
-    }
-}
-
-@Preview
-@Composable
-fun LocViaNasoliniPreview(){
-    Box(modifier = Modifier.fillMaxSize()){
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Text(text = "Via Nasolini")
+            Text(text = "Assicurazione")
         }
     }
 }

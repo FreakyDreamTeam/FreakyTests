@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocUnieuroActivity : ComponentActivity(){
+class CentraleCaorsoActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocUnieuroPage()
+            caorso()
         }
     }
 }
 
 @Composable
-fun LocUnieuroPage(){
+fun caorso(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocUnieuroPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Unieuro")
+            Text(text = "Assicurazione")
         }
     }
 }

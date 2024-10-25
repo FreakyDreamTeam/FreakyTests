@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocPonteCActivity : ComponentActivity(){
+class DepuratoreBorgoforteActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocPonteCPage()
+            depu()
         }
     }
 }
 
 @Composable
-fun LocPonteCPage(){
+fun depu(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocPonteCPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Ponte C")
+            Text(text = "Assicurazione")
         }
     }
 }

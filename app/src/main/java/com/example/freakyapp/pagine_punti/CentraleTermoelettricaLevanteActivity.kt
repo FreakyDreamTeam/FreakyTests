@@ -13,18 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-class LocKaefuActivity : ComponentActivity(){
+class CentraleTermoelettricaLevanteActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocKaefuPage()
+            centralet()
         }
     }
 }
 
 @Composable
-fun LocKaefuPage(){
+fun centralet(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -33,7 +33,7 @@ fun LocKaefuPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Kaefu")
+            Text(text = "Assicurazione")
         }
     }
 }

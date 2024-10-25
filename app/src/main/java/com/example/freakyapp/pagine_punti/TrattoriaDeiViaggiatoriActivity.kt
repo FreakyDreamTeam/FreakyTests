@@ -11,19 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
-class LocSegreteriaActivity : ComponentActivity(){
+class TrattoriaDeiViaggiatoriActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LocSegreteriaPage()
+            vi()
         }
     }
 }
 
 @Composable
-fun LocSegreteriaPage(){
+fun vi(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier
@@ -32,7 +33,7 @@ fun LocSegreteriaPage(){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Segreteria")
+            Text(text = "Assicurazione")
         }
     }
 }
