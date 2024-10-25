@@ -1,5 +1,6 @@
 package com.example.freakyapp
 
+import Sections
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,7 +36,7 @@ fun MyBottomAppBar() {
                 modifier = Modifier
                     .padding(16.dp) // Padding per creare distanza dai bordi
                     .shadow(8.dp, RoundedCornerShape(50)) // Effetto fluttuante
-                    .background(Color.Green, RoundedCornerShape(50)), // Colore e forma arrotondata
+                    .background(colorResource(R.color.verdescuro), RoundedCornerShape(50)), // Colore e forma arrotondata
                 containerColor = Color.Transparent, // Il colore container è trasparente
                 tonalElevation = 4.dp // Aggiunge un po' di elevazione
             ) {
