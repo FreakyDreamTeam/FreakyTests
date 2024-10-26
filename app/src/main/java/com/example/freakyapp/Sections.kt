@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -91,9 +92,9 @@ fun SectionContent(navController: NavController) {
     ) {
         SectionItem(
             navController = navController,
-            imageRes = R.drawable.torrione_fodesta,
+            imageRes = R.drawable.paesaggio2,
             title = "Paesaggio",
-            description = "Questo è il Torrione Fodesta, un esempio di architettura storica della città.",
+            description = "La sezione contentente tutti i punti paesaggistici della ciclovia.",
             destination = "section1"
         )
 
@@ -170,7 +171,8 @@ fun SectionItem(
 
         Text(
             text = title,
-            fontSize = 22.sp
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold
         )
 
         Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
@@ -208,14 +210,15 @@ fun SectionItemActivity(
                         Intent(context, targetActivity) // Crea l'intento per avviare l'activity
                     context.startActivity(intent) // Avvia l'activity
                 },
-            contentScale = ContentScale.FillWidth
+            contentScale = ContentScale.FillBounds
         )
 
         Spacer(modifier = Modifier.height(8.dp)) // Spazio tra immagine e testo
 
         Text(
             text = title,
-            fontSize = 22.sp
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold
         )
 
         Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
@@ -230,7 +233,6 @@ fun SectionItemActivity(
 
 @Composable
 fun SectionPaesaggio() {
-
     Column (
         modifier = Modifier
             .fillMaxSize()
