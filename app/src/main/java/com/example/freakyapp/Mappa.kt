@@ -8,47 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
-import com.example.freakyapp.pagine_punti.StazionePCActivity
-import com.example.freakyapp.pagine_punti.TorrioneFodestaActivity
-import com.example.freakyapp.pagine_punti.ExCentraleEmiliaActivity
-import com.example.freakyapp.pagine_punti.PonteDelleCeramicheActivity
-import com.example.freakyapp.pagine_punti.PonteFerroviarioActivity
-import com.example.freakyapp.pagine_punti.PonteSanRoccoActivity
-import com.example.freakyapp.pagine_punti.PonteAutostradaActivity
-import com.example.freakyapp.pagine_punti.PonteAVActivity
-import com.example.freakyapp.pagine_punti.NinoBixioActivity
-import com.example.freakyapp.pagine_punti.IsolottoMaggiActivity
-import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroFinardaActivity
-import com.example.freakyapp.pagine_punti.CentraleCaorsoActivity
-import com.example.freakyapp.pagine_punti.FontanellaRoncaroloActivity
-import com.example.freakyapp.pagine_punti.AreaSostaSNazzaroActivity
-import com.example.freakyapp.pagine_punti.PonteSNazzaroActivity
-import com.example.freakyapp.pagine_punti.PassaggioSuStradaFossadelloActivity
-import com.example.freakyapp.pagine_punti.PartenzaActivity
-import com.example.freakyapp.pagine_punti.CiclabilePonteSRoccoActivity
-import com.example.freakyapp.pagine_punti.DiscesaDalPonteActivity
-import com.example.freakyapp.pagine_punti.IsolaSerafiniActivity
-import com.example.freakyapp.pagine_punti.OasiNaturalisticaPinedoActivity
-import com.example.freakyapp.pagine_punti.CentraleTermoelettricaLevanteActivity
-import com.example.freakyapp.pagine_punti.LeapActivity
-import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroBorgoforteActivity
-import com.example.freakyapp.pagine_punti.DepuratoreBorgoforteActivity
-import com.example.freakyapp.pagine_punti.TermovalorizzatoreBorgoforteActivity
-import com.example.freakyapp.pagine_punti.CentraleIdroelettricaIsolaSerafiniActivity
-import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroConsorzioMuzioActivity
-import com.example.freakyapp.pagine_punti.FinestraSulPoActivity
-import com.example.freakyapp.pagine_punti.AgriturismoBoschiCelatiActivity
-import com.example.freakyapp.pagine_punti.TrattoriaMagatonActivity
-import com.example.freakyapp.pagine_punti.TrattoriaTonoliActivity
-import com.example.freakyapp.pagine_punti.TrattoriaDeiViaggiatoriActivity
-import com.example.freakyapp.pagine_punti.TrattoriaChaletSulPoActivity
-import com.example.freakyapp.pagine_punti.TanaDiRoncaroloActivity
-import com.example.freakyapp.pagine_punti.TrattoriaIlMilanistaActivity
-import com.example.freakyapp.pagine_punti.DistributoreAcquaMortizzaActivity
+import com.example.freakyapp.pagine_punti.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 @Composable
 fun Map(navController: NavController, modifier: Modifier = Modifier) {
@@ -62,10 +28,15 @@ fun Map(navController: NavController, modifier: Modifier = Modifier) {
                 Configuration.getInstance().userAgentValue = ctx.packageName
                 setMultiTouchControls(true)
 
+                val myLocationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(ctx), this)
+                myLocationOverlay.enableMyLocation() // Attiva la posizione dell'utente
+                myLocationOverlay.enableFollowLocation() // La mappa seguirà la posizione dell'utente
+                overlays.add(myLocationOverlay) // Aggiungi l'overlay alla mappa
+
                 // Imposta la posizione e lo zoom iniziale su Roma
                 val centro = GeoPoint(45.083383, 9.798143) // Coordinate per Centro ciclovia
                 controller.setZoom(13.0)  // Livello di zoom ravvicinato
-                controller.setCenter(centro)  // Centra la mappa su Roma
+                controller.setCenter(centro)  // Centra la mappa
 
                 // Aggiungi i marker
                 addMarker(this, GeoPoint(45.051949, 9.706057), "Stazione PC", context, StazionePCActivity::class.java)
@@ -105,7 +76,6 @@ fun Map(navController: NavController, modifier: Modifier = Modifier) {
                 addMarker(this, GeoPoint(45.0655449, 9.8379189), "La tana di Roncarolo", context, TanaDiRoncaroloActivity::class.java)
                 addMarker(this, GeoPoint(45.07589139606873, 9.895138352448015), "Trattoria Il Milanista", context, TrattoriaIlMilanistaActivity::class.java)
                 addMarker(this, GeoPoint(45.07815930003141, 9.756850391), "Distributore d'acqua Mortizza", context, DistributoreAcquaMortizzaActivity::class.java)
-
             }
         }
     )
@@ -120,11 +90,14 @@ fun addMarker(mapView: MapView, geoPoint: GeoPoint, title: String, context: andr
         setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         this.title = title
         setOnMarkerClickListener { _, _ ->
+            // Verifica che il context sia un'istanza di Activity
             val activity = context as? Activity
             if (activity != null) {
-                val activityContext = context as? Activity ?: return@setOnMarkerClickListener false
-                val intent = Intent(activityContext, targetActivity)
-                activityContext.startActivity(intent)
+                val intent = Intent(activity, targetActivity)
+                activity.startActivity(intent)
+            } else {
+                // Log o gestione dell'errore
+                println("Context non è un'istanza di Activity.")
             }
             true
         }

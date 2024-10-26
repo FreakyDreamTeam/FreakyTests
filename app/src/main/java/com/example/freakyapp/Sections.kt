@@ -1,233 +1,204 @@
-package com.example.freakyapp
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.freakyapp.R
+
 
 @Composable
 fun Sections() {
-    val navController = rememberNavController()  // Creiamo il NavController per la navigazione
+    val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "sections") {
-        composable("sections") { SectionsContent(navController) }
+        composable("sections") { SectionContent(navController) }
         composable("section1") { Section1() }
         composable("section2") { Section2() }
         composable("section3") { Section3() }
         composable("section4") { Section4() }
+        composable("section5") { Section5() }
     }
 }
 
+
+@Composable
+fun SectionContent(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
+    ) {
+        SectionItem(
+            navController = navController,
+            imageRes = R.drawable.torrione_fodesta,
+            title = "Paesaggio",
+            description = "Questo è il Torrione Fodesta, un esempio di architettura storica della città.",
+            destination = "section1"
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionItem(
+            navController = navController,
+            imageRes = R.drawable.consorzio_bonifica,
+            title = "Economia",
+            description = "L'impianto idrovoro rappresenta un importante elemento per l'economia circolare della regione.",
+            destination = "section2"
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionItem(
+            navController = navController,
+            imageRes = R.drawable.natura,
+            title = "Storia",
+            description = "Uno splendido scorcio del fiume Po, circondato da vegetazione rigogliosa.",
+            destination = "section3"
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionItem(
+            navController = navController,
+            imageRes = R.drawable.ponte_san_rocco,
+            title = "Turismo",
+            description = "Il ponte di San Rocco è un'importante via di collegamento.",
+            destination = "section4"
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionItem(
+            navController = navController,
+            imageRes = R.drawable.ponte_san_rocco,
+            title = "Viabilità",
+            description = "Il ponte di San Rocco è un'importante via di collegamento.",
+            destination = "section5"
+        )
+    }
+}
+
+
+@Composable
+fun SectionItem(
+    navController: NavController,
+    imageRes: Int,
+    title: String,
+    description: String,
+    destination: String
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Image(
+            painter = painterResource(id = imageRes),
+            contentDescription = title,
+            modifier = Modifier
+                .fillMaxWidth() // Immagini ora occupano tutta la larghezza disponibile
+                .aspectRatio(3f / 2f) // Modifica il rapporto d'aspetto a 3:2 per ingrandirle
+                .clip(RoundedCornerShape(32.dp))// Angoli molto arrotondati (32.dp)
+                .clickable {
+                    navController.navigate(destination) // Navigazione verso la pagina specifica
+                },
+            contentScale = ContentScale.FillWidth
+        )
+
+        Spacer(modifier = Modifier.height(8.dp)) // Spazio tra immagine e testo
+
+        Text(
+            text = title,
+            fontSize = 22.sp
+        )
+
+        Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
+
+        Text(
+            text = description,
+            fontSize = 16.sp
+        )
+    }
+}
 
 @Composable
 fun Section1() {
-    Image(
-        painter = painterResource(id = R.drawable.torrione_fodesta),
-        contentDescription = "torrione_fodesta",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(top = 20.dp)
-    )
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "1\nTorrione Fodesta"
-        )
+        Text(text = "Dettagli della sezione 1: Torrione Fodesta")
     }
 }
 
-
 @Composable
 fun Section2() {
-    Image(
-        painter = painterResource(id = R.drawable.consorzio_bonifica),
-        contentDescription = "consorzio_bonifica",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(top = 20.dp)
-    )
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "2\nImpianto Idrovoro Finarda"
-        )
+        Text(text = "Dettagli della sezione 2: Impianto Idrovoro Finarda")
     }
 }
 
 @Composable
 fun Section3() {
-    Image(
-        painter = painterResource(id = R.drawable.natura),
-        contentDescription = "natura",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(top = 20.dp)
-    )
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "3\nScorcio del Po"
-        )
+        Text(text = "Dettagli della sezione 3: Scorcio del Po")
     }
 }
 
 @Composable
 fun Section4() {
-    Column (
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-    ){
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .align(Alignment.Center),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Image(
-                    painter = painterResource(id = R.drawable.ponte_san_rocco),
-                    contentDescription = "ponte_san_rocco",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                )
-                Text(text = "1. Ponte di San Rocco")
-
-                Spacer(modifier = Modifier.height(30.dp))
-
-
-                Image(
-                    painter = painterResource(id = R.drawable.ponte_san_nazzaro_218116_660x368),
-                    contentDescription = "ponte_san_nazzaro",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                )
-                Text(text = "2. Ponte di San Nazzaro")
-
-            }
-        }
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = "Dettagli della sezione 4: Ponte di San Rocco")
     }
 }
 
 @Composable
-fun SectionsContent(navController: NavController) {
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
+fun Section5() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .align(Alignment.Center),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Spacer(modifier = Modifier.height(20.dp))
+        Text(text = "Dettagli della sezione 5")
+    }
+}
 
-                // Prima immagine - Diventa un bottone che porta a Section1
-                Image(
-                    painter = painterResource(id = R.drawable.torrione_fodesta),
-                    contentDescription = "torrione_fodesta",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                        .clickable {
-                            navController.navigate("section1")
-                        }
-                )
-                Text(text = "Storia ed architettura")
 
-                Spacer(modifier = Modifier.height(50.dp))
+@Preview
+@Composable
+fun Sections1() {
+    val navController = rememberNavController()
 
-                ////////////////////////////////////////////////
-
-                // Seconda immagine - Per esempio, potrebbe navigare a un'altra sezione
-                Image(
-                    painter = painterResource(id = R.drawable.consorzio_bonifica),
-                    contentDescription = "consorzio_bonifica",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                        .clickable {
-                            navController.navigate("section2")
-                        }
-                )
-                Text(text = "Economia circolare")
-
-                Spacer(modifier = Modifier.height(50.dp))
-
-                ////////////////////////////////////////////////
-
-                // Terza immagine - Ancora un altro esempio
-                Image(
-                    painter = painterResource(id = R.drawable.natura),
-                    contentDescription = "natura",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                        .clickable {
-                            navController.navigate("section3")
-                        }
-                )
-                Text(text = "Natura e biodiversità")
-
-                Spacer(modifier = Modifier.height(50.dp))
-
-                // quarta immagine - Ancora un altro esempio
-                Image(
-                    painter = painterResource(id = R.drawable.strada),
-                    contentDescription = "strada",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                        .clickable {
-                            navController.navigate("section4")
-                        }
-                )
-                Text(text = "Viabilità e turismo")
-
-                Spacer(modifier = Modifier.height(50.dp))
-            }
-        }
+    NavHost(navController = navController, startDestination = "sections") {
+        composable("sections") { SectionContent(navController) }
+        composable("section1") { Section1() }
+        composable("section2") { Section2() }
+        composable("section3") { Section3() }
+        composable("section4") { Section4() }
     }
 }

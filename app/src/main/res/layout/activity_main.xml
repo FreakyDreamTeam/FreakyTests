@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/po"
+        android:src="@drawable/poo"
         android:layout_alignParentTop="true"/>
 
     <!-- Testo centrato sull'immagine -->
