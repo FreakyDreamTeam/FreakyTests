@@ -13,6 +13,8 @@ import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 @Composable
 fun Map(navController: NavController, modifier: Modifier = Modifier) {
@@ -26,9 +28,15 @@ fun Map(navController: NavController, modifier: Modifier = Modifier) {
                 Configuration.getInstance().userAgentValue = ctx.packageName
                 setMultiTouchControls(true)
 
+                val myLocationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(ctx), this)
+                myLocationOverlay.enableMyLocation() // Attiva la posizione dell'utente
+                myLocationOverlay.enableFollowLocation() // La mappa seguirà la posizione dell'utente
+                overlays.add(myLocationOverlay) // Aggiungi l'overlay alla mappa
+
                 // Imposta la posizione e lo zoom iniziale su Roma
                 val centro = GeoPoint(45.083383, 9.798143) // Coordinate per Centro ciclovia
                 controller.setZoom(13.0)  // Livello di zoom ravvicinato
+
                 controller.setCenter(centro)  // Centra la mappa
 
                 // Aggiungi i marker
@@ -60,7 +68,6 @@ fun Map(navController: NavController, modifier: Modifier = Modifier) {
                 addMarker(this, GeoPoint(45.05949270337371, 9.732816388159177), "Termovalorizzatore Borgoforte", context, TermovalorizzatoreBorgoforteActivity::class.java)
                 addMarker(this, GeoPoint(45.09478508718558, 9.904594069179499), "Centrale idroelettrica Isola Serafini", context, CentraleIdroelettricaIsolaSerafiniActivity::class.java)
                 addMarker(this, GeoPoint(45.105883386456426, 9.736189359512233), "Impianto idrovoro del Consorzio Muzio", context, ImpiantoIdrovoroConsorzioMuzioActivity::class.java)
-                addMarker(this, GeoPoint(45.05521654110569, 9.800781841884934), "Impianto idrovoro Armalunga", context, ImpiantoIdrovoroArmalungaActivity::class.java)
                 addMarker(this, GeoPoint(45.0760107, 9.8925903), "La finestra sul Po", context, FinestraSulPoActivity::class.java)
                 addMarker(this, GeoPoint(45.04932571085476, 9.81132763801647), "Agriturismo Boschi Celati", context, AgriturismoBoschiCelatiActivity::class.java)
                 addMarker(this, GeoPoint(45.0586710, 9.8346721), "Trattoria Magaton", context, TrattoriaMagatonActivity::class.java)

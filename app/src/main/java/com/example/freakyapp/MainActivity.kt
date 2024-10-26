@@ -8,9 +8,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -57,48 +61,31 @@ class MainActivity : ComponentActivity() {
         val navController = rememberNavController()
 
         Scaffold(
-            bottomBar = { MyBottomAppBar() }  // Barra inferiore di navigazione
+            bottomBar = {
+                MyBottomAppBar()
+            },
+            modifier = Modifier
+                .windowInsetsPadding(WindowInsets.navigationBars) // Considera la barra di navigazione per il layout
         ) { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-                    .background(colorResource(R.color.Verdechiaro))
-            ) {
-                NavHost(
-                    navController = navController,
-                    startDestination = "home"  // Schermata iniziale
-                ) {
-                    composable("home") { Home() }
-                    composable("map") { Map(navController) }  // Schermata della mappa
-                    composable("sections") { Sections() }  // Schermata delle sezioni
-                }
+
+            if(isSystemInDarkTheme()){
+                window.navigationBarColor = getColor(R.color.verdenegro)
+            }else{
+                window.navigationBarColor = getColor(R.color.verdechiaro)
             }
-        }
-    }
 
-    @Preview
-    @Composable
-    fun MainScreen2() {
-        // Ottieni il contesto
-        val navController = rememberNavController()
-
-        Scaffold(
-            bottomBar = { MyBottomAppBar() }  // Barra inferiore di navigazione
-        ) { innerPadding ->
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .background(colorResource(R.color.Verdechiaro))
             ) {
                 NavHost(
                     navController = navController,
-                    startDestination = "home"  // Schermata iniziale
+                    startDestination = "home"
                 ) {
                     composable("home") { Home() }
-                    composable("map") { Map(navController) }  // Schermata della mappa
-                    composable("sections") { Sections() }  // Schermata delle sezioni
+                    composable("map") { Map(navController) }
+                    composable("sections") { Sections() }
                 }
             }
         }

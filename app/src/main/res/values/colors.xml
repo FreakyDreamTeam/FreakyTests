@@ -7,6 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="Verdechiaro">#E4EFEB</color>
+    <color name="verdechiaro">#E4EFEB</color>
     <color name="verdescuro">#BED5C2</color>
+    <color name="verdenegro">#2B3B30</color>
+    <color name="verdepiùscuro">#80AC87</color>
+    <color name="verdescurissimo">#509558</color>
 </resources>
