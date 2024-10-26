@@ -36,6 +36,7 @@ fun Map(navController: NavController, modifier: Modifier = Modifier) {
                 // Imposta la posizione e lo zoom iniziale su Roma
                 val centro = GeoPoint(45.083383, 9.798143) // Coordinate per Centro ciclovia
                 controller.setZoom(13.0)  // Livello di zoom ravvicinato
+
                 controller.setCenter(centro)  // Centra la mappa
 
                 // Aggiungi i marker
