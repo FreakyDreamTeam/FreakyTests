@@ -72,11 +72,11 @@ fun Sections() {
 
     NavHost(navController = navController, startDestination = "sections") {
         composable("sections") { SectionContent(navController) }
-        composable("section1") { Section1() }
-        composable("section2") { Section2() }
-        composable("section3") { Section3() }
-        composable("section4") { Section4() }
-        composable("section5") { Section5() }
+        composable("section1") { SectionPaesaggio() }
+        composable("section2") { SectionEconomia() }
+        composable("section3") { SectionStoria() }
+        composable("section4") { SectionViabilità() }
+        composable("section5") { SectionTurismo() }
     }
 }
 
@@ -229,7 +229,7 @@ fun SectionItemActivity(
 }
 
 @Composable
-fun Section1() {
+fun SectionPaesaggio() {
 
     Column (
         modifier = Modifier
@@ -292,7 +292,7 @@ fun Section1() {
 }
 
 @Composable
-fun Section2() {
+fun SectionEconomia() {
 
     Column (
         modifier = Modifier
@@ -383,7 +383,7 @@ fun Section2() {
 }
 
 @Composable
-fun Section3() {
+fun SectionStoria() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -501,7 +501,7 @@ fun Section3() {
 }
 
 @Composable
-fun Section4() {
+fun SectionViabilità() {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -579,7 +579,7 @@ fun Section4() {
 }
 
 @Composable
-fun Section5() {
+fun SectionTurismo() {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -674,20 +674,5 @@ fun Section5() {
 //            description = "Questo è il Torrione Fodesta, un esempio di architettura storica della città.",
 //            targetActivity = DistributoreAcquaMortizzaActivity::class.java
 //        )
-    }
-}
-
-
-@Preview
-@Composable
-fun Sections1() {
-    val navController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = "sections") {
-        composable("sections") { SectionContent(navController) }
-        composable("section1") { Section1() }
-        composable("section2") { Section2() }
-        composable("section3") { Section3() }
-        composable("section4") { Section4() }
     }
 }
