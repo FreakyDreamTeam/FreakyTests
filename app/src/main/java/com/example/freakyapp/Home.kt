@@ -34,7 +34,7 @@ fun Home() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(32.dp)
             .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
     ) {
         Row(
