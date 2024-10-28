@@ -102,9 +102,9 @@ fun SectionContent(navController: NavController) {
 
         SectionItem(
             navController = navController,
-            imageRes = R.drawable.consorzio_bonifica,
+            imageRes = R.drawable.caorso_centrale,
             title = "Economia",
-            description = "Lungo la ciclovia del Po, i ciclisti possono osservare diversi esempi di produzione energetica sostenibile e differenti impieghi della tecnologia",
+            description = "Lungo la ciclovia del Po, i ciclisti possono osservare diversi esempi di produzione energetica sostenibile e differenti impieghi della tecnologia...",
             destination = "section2"
         )
 
@@ -112,7 +112,7 @@ fun SectionContent(navController: NavController) {
 
         SectionItem(
             navController = navController,
-            imageRes = R.drawable.natura,
+            imageRes = R.drawable.isolotto_maggi,
             title = "Storia",
             description = "Lungo la ciclovia del Po, si possono incontrare interessanti elementi storici e architettonici. I caratteristici borghi, con le loro chiese e i...",
             destination = "section3"
@@ -122,7 +122,7 @@ fun SectionContent(navController: NavController) {
 
         SectionItem(
             navController = navController,
-            imageRes = R.drawable.ponte_san_rocco,
+            imageRes = R.drawable.ponteav,
             title = "Viabilità",
             description = "La ciclovia del Po in territorio piacentino e sulla sponda lombarda offre una viabilità ben strutturata, con percorsi dedicati e segnaletica chiara che garantiscono...",
             destination = "section4"
@@ -132,9 +132,9 @@ fun SectionContent(navController: NavController) {
 
         SectionItem(
             navController = navController,
-            imageRes = R.drawable.ponte_san_rocco,
+            imageRes = R.drawable.natura,
             title = "Turismo",
-            description = "Il ponte di San Rocco è un'importante via di collegamento.",
+            description = "Percorrendo la ciclovia del Po, i visitatori possono esplorare borghi storici, degustare vini locali e scoprire le tradizioni culinarie della...",
             destination = "section5"
         )
     }
@@ -160,7 +160,7 @@ fun SectionItem(
             modifier = Modifier
                 .fillMaxWidth() // Immagini ora occupano tutta la larghezza disponibile
                 .aspectRatio(3f / 2f) // Modifica il rapporto d'aspetto a 3:2 per ingrandirle
-                .clip(RoundedCornerShape(32.dp))// Angoli molto arrotondati (32.dp)
+                .clip(RoundedCornerShape(16.dp))// Angoli molto arrotondati (32.dp)
                 .clickable {
                     navController.navigate(destination) // Navigazione verso la pagina specifica
                 },
@@ -204,7 +204,7 @@ fun SectionItemActivity(
             modifier = Modifier
                 .fillMaxWidth() // Immagini ora occupano tutta la larghezza disponibile
                 .aspectRatio(3f / 2f) // Modifica il rapporto d'aspetto a 3:2 per ingrandirle
-                .clip(RoundedCornerShape(32.dp))// Angoli molto arrotondati (32.dp)
+                .clip(RoundedCornerShape(16.dp))// Angoli molto arrotondati (32.dp)
                 .clickable {
                     val intent =
                         Intent(context, targetActivity) // Crea l'intento per avviare l'activity
@@ -571,7 +571,7 @@ fun SectionViabilità() {
             .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
     ){
         Text(
-            text = "Storia",
+            text = "Viabilità",
             fontSize = 48.sp,
             fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Center,
@@ -591,7 +591,26 @@ fun SectionViabilità() {
 
         Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
 
+        Box (modifier = Modifier.padding(bottom = 4.dp, start = 16.dp, end = 16.dp)){
+            Image(
+                painter = painterResource(R.drawable.merli_viabilita),
+                contentDescription = "mommy",
+                modifier = Modifier
+                    .fillMaxWidth() // Immagini ora occupano tutta la larghezza disponibile
+                    .aspectRatio(3f / 2f) // Modifica il rapporto d'aspetto a 3:2 per ingrandirle
+                    .clip(RoundedCornerShape(22.dp)), // Angoli molto arrotondati (32.dp)
+                contentScale = ContentScale.FillBounds
+            )
+        }
 
+        Spacer(modifier = Modifier.height(8.dp)) // Spazio tra immagine e testo
+
+        Text(
+            text = "La ciclovia è composta da diverse tipologie di fondo stradale. Alcuni tratti sono condivisi con altri veicoli, il che può rappresentare un pericolo per i ciclisti meno esperti. Ci sono tratti del percorso riservati esclusivamente ai ciclisti e altri condivisi con i pedoni. Inoltre, la ciclovia include strade statali, dove il traffico di veicoli è più intenso e veloce. La superficie della strade è generalmente buona, ma la qualità può variare. Alcuni tratti sono asfaltati, altri sono ghiaiosi, mentre alcuni sono sterrati. Lungo il percorso è necessario attraversare un ponte, il che aggiunge una variazione al tragitto. Nei parcheggi tra la stazione e la ciclovia sono presenti pavimenti drenanti, che permettono il deflusso dell’acqua, evitando ristagni e allagamenti, questo migliora la sicurezza e l’accessibilità del percorso in caso di pioggia. Durante il tragitto è presente una fontanella, che permette di rifornirsi di acqua potabile, e un’area picnic con panchine e tavolini dove è possibile mangiare e utilizzare i servizi igienici. La segnaletica nella ciclovia presenta alcune criticità. Chi si trova in stazione può avere difficoltà a trovare il punto di noleggio delle bici, poiché alcuni cartelli indicano direzioni contrastanti. Inoltre, nella deviazione per il percorso della ciclovia, mancano segnali che indicano il punto esatto in cui svoltare, il che può confondere i ciclisti non del posto.",
+            fontSize = 16.sp,
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            textAlign = TextAlign.Justify
+        )
 
 //        SectionItemActivity(
 //            imageRes = R.drawable.torrione_fodesta,
@@ -653,13 +672,6 @@ fun SectionViabilità() {
 //            description = "Questo è il Torrione Fodesta, un esempio di architettura storica della città.",
 //            targetActivity = DiscesaDalPonteActivity::class.java
 //        )
-
-        SectionItemActivity(
-            imageRes = R.drawable.torrione_fodesta,
-            title = "Viabilità sulla ciclovia",
-            description = "Questo è il Torrione Fodesta, un esempio di architettura storica della città.",
-            targetActivity = DiscesaDalPonteActivity::class.java
-        )
     }
 }
 
@@ -671,6 +683,27 @@ fun SectionTurismo() {
             .padding(16.dp)
             .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
     ){
+
+        Text(
+            text = "Turismo",
+            fontSize = 48.sp,
+            fontWeight = FontWeight.ExtraBold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 4.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
+
+        Text(
+            text = "Percorrendo la ciclovia del Po, i visitatori possono esplorare borghi storici, degustare vini locali e scoprire le tradizioni culinarie della regione. Le strutture ricettive, come agriturismi e bed & breakfast, offrono accoglienza e opportunità per un turismo sostenibile, rendendo il percorso ideale per chi cerca un’esperienza autentica e immersiva nella cultura locale.",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(16.dp)
+        )
+
+
         SectionItemActivity(
             imageRes = R.drawable.finestra_po,
             title = "La finestra sul Po",
@@ -690,7 +723,7 @@ fun SectionTurismo() {
         Spacer(modifier = Modifier.height(16.dp))
 
         SectionItemActivity(
-            imageRes = R.drawable.torrione_fodesta,
+            imageRes = R.drawable.magaton,
             title = "Trattoria Magaton",
             description = "La trattoria Magaton è un luogo di ristoro situato nei pressi di Roncarolo (PC). Per raggiungere il seguente luogo è necessario percorrere un tratto di strada Argine Po. All’interno di questa struttura è possibile usufruire di servizi culinari a base di pesce pescato direttamente dal fiume. Inoltre la posizione del Magaton è favorevole anche a…",
             targetActivity = TrattoriaMagatonActivity::class.java

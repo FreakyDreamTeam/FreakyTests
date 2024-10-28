@@ -79,7 +79,9 @@ fun caorso(window: Window){
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 modifier = Modifier.padding(top = 32.dp, bottom = 8.dp, start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Left,
+                textAlign = TextAlign.Center,
+                lineHeight = 30.sp,
+                letterSpacing = 0.5.sp
             )
 
             Box(modifier = Modifier.padding(bottom = 4.dp, start = 32.dp, end = 32.dp)){
@@ -100,12 +102,15 @@ fun caorso(window: Window){
 
             Text(
                 text = "La Centrale Nucleare di Caorso è stata un’importante infrastruttura energetica nel panorama italiano a partire dagli anni ’70. Situata sulle rive del fiume Po, nel comune di Caorso, provincia di Piacenza, questa centrale, dotata di un reattore ad acqua bollente di tipo BWR4, rappresentava una pietra miliare nella produzione di energia nucleare nel nostro Paese, con una capacità di 840 MW. Tuttavia, la sua attività commerciale è stata interrotta nel 1986, principalmente a causa di considerazioni politiche legate a questioni di sicurezza e all’esito di un referendum sul nucleare. Da allora, è iniziato un complesso processo di smantellamento, mirato a disattivare l’impianto e a gestire i materiali radioattivi in modo sicuro ed efficiente. Questo processo ha coinvolto varie attività, tra cui la sistemazione e il trasporto del combustibile irraggiato, il trattamento dei rifiuti radioattivi, la decontaminazione delle strutture e la rimozione di materiali pericolosi come l’amianto. Attualmente, la centrale si trova in uno stato di “arresto a freddo”, con il nocciolo del reattore scarico e i rifiuti radioattivi stoccati temporaneamente in attesa di essere trasferiti per il loro riprocessamento. Inoltre, si sta lavorando attivamente alla ricerca di un sito nazionale adeguato per il deposito finale dei rifiuti nucleari, tenendo conto di criteri di sicurezza e impatti ambientali. Questo processo, guidato da enti come la Società Gestione Impianti Nucleari (Sogin) e le autorità competenti, richiede un’attenta pianificazione e gestione per garantire la sicurezza pubblica e la protezione dell’ambiente a lungo termine.",
-                fontSize = 16.sp,
                 color = Color.White,
                 modifier = Modifier
                     .padding(bottom = 4.dp, start = 32.dp, end = 32.dp),
                 textAlign = TextAlign.Justify,
-                fontFamily = robotoFontFamily
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+                letterSpacing = 0.5.sp
             )
         }
     } else {
@@ -124,7 +129,9 @@ fun caorso(window: Window){
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier.padding(top = 32.dp, bottom = 8.dp, start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Justify,
+                textAlign = TextAlign.Center,
+                lineHeight = 30.sp,
+                letterSpacing = 0.5.sp
             )
 
             Box(modifier = Modifier.padding(bottom = 4.dp, start = 32.dp, end = 32.dp)){
@@ -144,11 +151,15 @@ fun caorso(window: Window){
 
             Text(
                 text = "La Centrale Nucleare di Caorso è stata un’importante infrastruttura energetica nel panorama italiano a partire dagli anni ’70. Situata sulle rive del fiume Po, nel comune di Caorso, provincia di Piacenza, questa centrale, dotata di un reattore ad acqua bollente di tipo BWR4, rappresentava una pietra miliare nella produzione di energia nucleare nel nostro Paese, con una capacità di 840 MW. Tuttavia, la sua attività commerciale è stata interrotta nel 1986, principalmente a causa di considerazioni politiche legate a questioni di sicurezza e all’esito di un referendum sul nucleare. Da allora, è iniziato un complesso processo di smantellamento, mirato a disattivare l’impianto e a gestire i materiali radioattivi in modo sicuro ed efficiente. Questo processo ha coinvolto varie attività, tra cui la sistemazione e il trasporto del combustibile irraggiato, il trattamento dei rifiuti radioattivi, la decontaminazione delle strutture e la rimozione di materiali pericolosi come l’amianto. Attualmente, la centrale si trova in uno stato di “arresto a freddo”, con il nocciolo del reattore scarico e i rifiuti radioattivi stoccati temporaneamente in attesa di essere trasferiti per il loro riprocessamento. Inoltre, si sta lavorando attivamente alla ricerca di un sito nazionale adeguato per il deposito finale dei rifiuti nucleari, tenendo conto di criteri di sicurezza e impatti ambientali. Questo processo, guidato da enti come la Società Gestione Impianti Nucleari (Sogin) e le autorità competenti, richiede un’attenta pianificazione e gestione per garantire la sicurezza pubblica e la protezione dell’ambiente a lungo termine.",
-                fontSize = 18.sp,
                 color = Color.Black,
                 modifier = Modifier
                     .padding(bottom = 4.dp, start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Justify
+                textAlign = TextAlign.Justify,
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+                letterSpacing = 0.5.sp
             )
         }
     }

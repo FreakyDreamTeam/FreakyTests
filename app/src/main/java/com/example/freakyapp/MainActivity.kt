@@ -1,6 +1,7 @@
 package com.example.freakyapp
 
 import Sections
+import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.activity.ComponentActivity
@@ -26,6 +27,7 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.freakyapp.location.LocationService
 import com.example.freakyapp.ui.theme.FreakyAppTheme
 import org.osmdroid.config.Configuration
 
@@ -37,7 +39,6 @@ class MainActivity : ComponentActivity() {
         // Inizializza la configurazione di OpenStreetMap
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
 
-
         ActivityCompat.requestPermissions(
             this,
             arrayOf(
@@ -47,6 +48,12 @@ class MainActivity : ComponentActivity() {
             ),
             0
         )
+
+        val intent = Intent(this, LocationService::class.java).apply {
+            action = LocationService.ACTION_START
+        }
+        startService(intent)
+
         enableEdgeToEdge()
         setContent {
             FreakyAppTheme {
