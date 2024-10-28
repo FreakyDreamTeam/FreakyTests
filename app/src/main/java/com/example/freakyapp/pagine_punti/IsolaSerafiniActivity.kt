@@ -18,13 +18,13 @@ class IsolaSerafiniActivity : ComponentActivity(){
         super.onCreate(savedInstanceState)
 
         setContent {
-            serf()
+            isolas()
         }
     }
 }
 
 @Composable
-fun serf(){
+fun isolas(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier

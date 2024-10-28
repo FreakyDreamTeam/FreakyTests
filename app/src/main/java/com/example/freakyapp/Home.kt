@@ -54,7 +54,7 @@ fun Home() {
                 text = "   Pa(e)(s)saggio di testimone",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFFc01010), // Colore verde scuro del titolo
+                color = Color(0xFFed4040), // Colore verde scuro del titolo c01010
                 modifier = Modifier.padding(bottom = 4.dp) // Margine inferiore
             )
         }
@@ -67,7 +67,7 @@ fun Home() {
             text = "Un impegno verso innovazione e sostenibilità",
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFFc01010), // Colore verde scuro del titolo
+            color = Color(0xFFed4040), // Colore verde scuro del titolo
             modifier = Modifier.padding(bottom = 4.dp), // Margine inferiore
             textAlign = TextAlign.Center
         )

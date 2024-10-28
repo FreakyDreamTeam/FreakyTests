@@ -18,13 +18,13 @@ class DiscesaDalPonteActivity : ComponentActivity(){
         super.onCreate(savedInstanceState)
 
         setContent {
-            disce()
+            discesa()
         }
     }
 }
 
 @Composable
-fun disce(){
+fun discesa(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier

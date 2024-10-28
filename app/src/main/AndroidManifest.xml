@@ -49,6 +49,7 @@
         <activity android:name=".pagine_punti.FinestraSulPoActivity" />
         <activity android:name=".pagine_punti.FontanellaRoncaroloActivity" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroBorgoforteActivity" />
+        <activity android:name=".pagine_punti.ImpiantoIdrovoroArmalungaActivity" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroConsorzioMuzioActivity" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroFinardaActivity" />
         <activity android:name=".pagine_punti.IsolaSerafiniActivity" />
@@ -76,6 +77,9 @@
         <service
             android:name=".location.LocationService"
             android:foregroundServiceType="location" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

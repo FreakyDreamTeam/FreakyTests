@@ -11,19 +11,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
 class DistributoreAcquaMortizzaActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            d()
+            acq()
         }
     }
 }
 
 @Composable
-fun d(){
+fun acq(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier

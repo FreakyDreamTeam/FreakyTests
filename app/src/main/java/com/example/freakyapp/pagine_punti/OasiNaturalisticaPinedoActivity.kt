@@ -18,13 +18,13 @@ class OasiNaturalisticaPinedoActivity : ComponentActivity(){
         super.onCreate(savedInstanceState)
 
         setContent {
-            oas()
+            oasi()
         }
     }
 }
 
 @Composable
-fun oas(){
+fun oasi(){
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier

@@ -55,6 +55,7 @@ import com.example.freakyapp.pagine_punti.TrattoriaChaletSulPoActivity
 import com.example.freakyapp.pagine_punti.TanaDiRoncaroloActivity
 import com.example.freakyapp.pagine_punti.TrattoriaIlMilanistaActivity
 import com.example.freakyapp.pagine_punti.DistributoreAcquaMortizzaActivity
+import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroArmalungaActivity
 
 
 class LocationService : Service() {
@@ -88,6 +89,7 @@ class LocationService : Service() {
     private var proximityNotifiedDepuratoreBorgoforte = false
     private var proximityNotifiedTermovalorizzatoreBorgoforte = false
     private var proximityNotifiedCentraleIdroelettricaIsolaSerafini = false
+    private var proximityNotifiedImpiantoIdrovoroArmalunga = false
     private var proximityNotifiedImpiantoIdrovoroConsorzioMuzio = false
     private var proximityNotifiedFinestraSulPo = false
     private var proximityNotifiedAgriturismoBoschiCelati = false
@@ -214,6 +216,7 @@ class LocationService : Service() {
         val depuratoreBorgoforte = Pair(45.05949270337371, 9.732816388159177)  // Depuratore Borgoforte
         val termovalorizzatoreBorgoforte = Pair(45.05949270337371, 9.732816388159177)  // Termovalorizzatore Borgoforte
         val centraleIdroelettricaIsolaSerafini = Pair(45.09478508718558, 9.904594069179499)  // Centrale idroelettrica Isola Serafini
+        val impiantoIdrovoroArmalunga = Pair(45.05521654110569, 9.800781841884934) //Impianto idrovoro di Armalunga
         val impiantoIdrovoroConsorzioMuzio = Pair(45.105883386456426, 9.736189359512233)  // Impianto idrovoro del Consorzio Muzio
     // Turismo
         val finestraSulPo = Pair(45.0760107, 9.8925903)  // La finestra sul Po
@@ -448,6 +451,14 @@ class LocationService : Service() {
                     targetActivity = CentraleIdroelettricaIsolaSerafiniActivity::class.java
                 )
             }
+            isWithinRange(lat, long, impiantoIdrovoroArmalunga.first, impiantoIdrovoroArmalunga.second, proximityThreshold) && !proximityNotifiedImpiantoIdrovoroArmalunga -> {
+                proximityNotifiedImpiantoIdrovoroArmalunga = true
+                sendNotification(
+                    title = "Sei vicino all'impianto idrovoro di Armalunga",
+                    message = "Tocca per aprire",
+                    targetActivity = ImpiantoIdrovoroArmalungaActivity::class.java
+                )
+            }
             isWithinRange(lat, long, impiantoIdrovoroConsorzioMuzio.first, impiantoIdrovoroConsorzioMuzio.second, proximityThreshold) && !proximityNotifiedImpiantoIdrovoroConsorzioMuzio -> {
                 proximityNotifiedImpiantoIdrovoroConsorzioMuzio = true
                 sendNotification(
@@ -556,6 +567,7 @@ class LocationService : Service() {
             !isWithinRange(lat, long, depuratoreBorgoforte.first, depuratoreBorgoforte.second, proximityThreshold) -> proximityNotifiedDepuratoreBorgoforte = false
             !isWithinRange(lat, long, termovalorizzatoreBorgoforte.first, termovalorizzatoreBorgoforte.second, proximityThreshold) -> proximityNotifiedTermovalorizzatoreBorgoforte = false
             !isWithinRange(lat, long, centraleIdroelettricaIsolaSerafini.first, centraleIdroelettricaIsolaSerafini.second, proximityThreshold) -> proximityNotifiedCentraleIdroelettricaIsolaSerafini = false
+            !isWithinRange(lat, long, impiantoIdrovoroArmalunga.first, impiantoIdrovoroArmalunga.second, proximityThreshold) -> proximityNotifiedImpiantoIdrovoroArmalunga = false
             !isWithinRange(lat, long, impiantoIdrovoroConsorzioMuzio.first, impiantoIdrovoroConsorzioMuzio.second, proximityThreshold) -> proximityNotifiedImpiantoIdrovoroConsorzioMuzio = false
             !isWithinRange(lat, long, finestraSulPo.first, finestraSulPo.second, proximityThreshold) -> proximityNotifiedFinestraSulPo = false
             !isWithinRange(lat, long, agriturismoBoschiCelati.first, agriturismoBoschiCelati.second, proximityThreshold) -> proximityNotifiedAgriturismoBoschiCelati = false
