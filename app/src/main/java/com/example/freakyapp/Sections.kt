@@ -94,7 +94,7 @@ fun SectionContent(navController: NavController) {
             navController = navController,
             imageRes = R.drawable.paesaggio2,
             title = "Paesaggio",
-            description = "La sezione contentente tutti i punti paesaggistici della ciclovia.",
+            description = "Tra sponda piacentina e sponda lombarda, le tranquille acque del fiume si snodano tra ampie pianure, argini fioriti...",
             destination = "section1"
         )
 
@@ -104,7 +104,7 @@ fun SectionContent(navController: NavController) {
             navController = navController,
             imageRes = R.drawable.consorzio_bonifica,
             title = "Economia",
-            description = "L'impianto idrovoro rappresenta un importante elemento per l'economia circolare della regione.",
+            description = "Lungo la ciclovia del Po, i ciclisti possono osservare diversi esempi di produzione energetica sostenibile e differenti impieghi della tecnologia",
             destination = "section2"
         )
 
@@ -114,7 +114,7 @@ fun SectionContent(navController: NavController) {
             navController = navController,
             imageRes = R.drawable.natura,
             title = "Storia",
-            description = "Uno splendido scorcio del fiume Po, circondato da vegetazione rigogliosa.",
+            description = "Lungo la ciclovia del Po, si possono incontrare interessanti elementi storici e architettonici. I caratteristici borghi, con le loro chiese e i...",
             destination = "section3"
         )
 
@@ -124,7 +124,7 @@ fun SectionContent(navController: NavController) {
             navController = navController,
             imageRes = R.drawable.ponte_san_rocco,
             title = "Viabilità",
-            description = "Il ponte di San Rocco è un'importante via di collegamento.",
+            description = "La ciclovia del Po in territorio piacentino e sulla sponda lombarda offre una viabilità ben strutturata, con percorsi dedicati e segnaletica chiara che garantiscono...",
             destination = "section4"
         )
 
@@ -239,6 +239,26 @@ fun SectionPaesaggio() {
             .padding(16.dp)
             .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
     ){
+
+        Text(
+            text = "Paesaggio",
+            fontSize = 48.sp,
+            fontWeight = FontWeight.ExtraBold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 4.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
+
+        Text(
+            text = "Tra sponda piacentina e sponda lombarda, le tranquille acque del fiume si snodano tra ampie pianure, argini fioriti e rigogliosi boschi fluviali. Questo ricco e variegato ambiente naturale, punteggiato da borghi storici e attività agricole, invita a esplorare e godere della bellezza del territorio.",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(16.dp)
+        )
+
         SectionItemActivity(
             imageRes = R.drawable.isola_serafini,
             title = "Isola Serafini",
@@ -302,6 +322,25 @@ fun SectionEconomia() {
             .padding(16.dp)
             .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
     ){
+        Text(
+            text = "Economia",
+            fontSize = 48.sp,
+            fontWeight = FontWeight.ExtraBold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 4.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
+
+        Text(
+            text = "Lungo la ciclovia del Po, i ciclisti possono osservare diversi esempi di produzione energetica sostenibile e differenti impieghi della tecnologia per sfruttare le risorse naturali. Questi impianti non solo contribuiscono alla transizione energetica, ma arricchiscono anche l'esperienza del viaggio, rendendo evidente l'interazione tra natura e innovazione.",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(16.dp)
+        )
+
         SectionItemActivity(
             imageRes = R.drawable.levante,
             title = "Centrale termoelettrica ex Levante",
@@ -392,6 +431,27 @@ fun SectionStoria() {
             .padding(16.dp)
             .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
     ) {
+
+        Text(
+            text = "Storia",
+            fontSize = 48.sp,
+            fontWeight = FontWeight.ExtraBold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 4.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
+
+        Text(
+            text = "Lungo la ciclovia del Po, si possono incontrare interessanti elementi storici e architettonici. I caratteristici borghi, con le loro chiese e i palazzi storici, offrono un’immersione nel passato, rendendo il percorso non solo un'esperienza naturalistica, ma anche un viaggio nella cultura nelle tradizioni locali.",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(16.dp)
+        )
+
+
         SectionItemActivity(
             imageRes = R.drawable.stazione_ferroviaria,
             title = "Stazione Piacenza",
@@ -510,6 +570,29 @@ fun SectionViabilità() {
             .padding(16.dp)
             .verticalScroll(rememberScrollState()) // Abilita lo scorrimento verticale
     ){
+        Text(
+            text = "Storia",
+            fontSize = 48.sp,
+            fontWeight = FontWeight.ExtraBold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(top = 16.dp, bottom = 4.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
+
+        Text(
+            text = "La ciclovia del Po in territorio piacentino e sulla sponda lombarda offre una viabilità ben strutturata, con percorsi dedicati e segnaletica chiara che garantiscono un'esperienza sicura per ciclisti e pedoni. I tratti sono perlopiù pianeggianti, adatti a ogni livello di esperienza, e si snodano lungo il fiume, collegando aree naturali e borghi storici. Questa rete ciclabile promuove un turismo sostenibile, permettendo di esplorare il territorio in modo immersivo e rispettoso.",
+            fontSize = 18.sp,
+            textAlign = TextAlign.Justify,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        Spacer(modifier = Modifier.height(4.dp)) // Spazio tra titolo e descrizione
+
+
+
 //        SectionItemActivity(
 //            imageRes = R.drawable.torrione_fodesta,
 //            title = "Fontanella di Roncarolo",
