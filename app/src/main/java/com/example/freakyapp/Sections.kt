@@ -60,6 +60,7 @@ import com.example.freakyapp.pagine_punti.StazionePCActivity
 import com.example.freakyapp.pagine_punti.TanaDiRoncaroloActivity
 import com.example.freakyapp.pagine_punti.TermovalorizzatoreBorgoforteActivity
 import com.example.freakyapp.pagine_punti.TorrioneFodestaActivity
+import com.example.freakyapp.pagine_punti.TrattoriaCattivelliActivity
 import com.example.freakyapp.pagine_punti.TrattoriaChaletSulPoActivity
 import com.example.freakyapp.pagine_punti.TrattoriaDeiViaggiatoriActivity
 import com.example.freakyapp.pagine_punti.TrattoriaIlMilanistaActivity
@@ -703,7 +704,6 @@ fun SectionTurismo() {
             modifier = Modifier.padding(16.dp)
         )
 
-
         SectionItemActivity(
             imageRes = R.drawable.finestra_po,
             title = "La finestra sul Po",
@@ -731,23 +731,32 @@ fun SectionTurismo() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-//        SectionItemActivity(
-//            imageRes = R.drawable.torrione_fodesta,
-//            title = "Trattoria Tonoli",
-//            description = "Questo è il Torrione Fodesta, un esempio di architettura storica della città.",
-//            targetActivity = TrattoriaTonoliActivity::class.java
-//        )
-//
-//        Spacer(modifier = Modifier.height(16.dp))
-//
-//        SectionItemActivity(
-//            imageRes = R.drawable.torrione_fodesta,
-//            title = "Trattoria dei viaggiatori",
-//            description = "Questo è il Torrione Fodesta, un esempio di architettura storica della città.",
-//            targetActivity = TrattoriaDeiViaggiatoriActivity::class.java
-//        )
-//
-//        Spacer(modifier = Modifier.height(16.dp))
+        SectionItemActivity(
+            imageRes = R.drawable.trattoria_tonoli,
+            title = "Trattoria Tonoli",
+            description = "La trattoria Tonoli è un locale storico della Bassa Piacentina, a pochi minuti a piedi dal fiume Po. L’ingresso si affaccia ad un bar, piacevolmente frequentato, dal quale si accede alla sala principale a destra, che ospita un buon numero di tavoli, e a un piccolo locale sul retro, più accogliente e intimo. Le pareti,...",
+            targetActivity = TrattoriaTonoliActivity::class.java
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionItemActivity(
+            imageRes = R.drawable.trattoria_dei_viaggiatori,
+            title = "Trattoria dei viaggiatori",
+            description = "La Trattoria dei Viaggiatori, situata a Caselle Landi, è un punto di riferimento per chi cerca i sapori autentici della cucina tradizionale lodigiana. Il locale, accogliente e recentemente rinnovato, propone piatti caserecci preparati con ingredienti freschi, inclusi dolci e pane fatti in casa. La gestione attenta della signora Chicca e la qualità dei piatti, come...",
+            targetActivity = TrattoriaDeiViaggiatoriActivity::class.java
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        SectionItemActivity(
+            imageRes = R.drawable.trattoria_cattivelli,
+            title = "Trattoria Cattivelli",
+            description = "La trattoria Cattivelli è un accogliente ristorante situato nel cuore di San Martino. Per raggiungere questo luogo, si può percorrere la strada principale che attraversa il centro del paese. All’interno della struttura, gli ospiti possono gustare...",
+            targetActivity = TrattoriaCattivelliActivity::class.java
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         SectionItemActivity(
             imageRes = R.drawable.chalet_po,

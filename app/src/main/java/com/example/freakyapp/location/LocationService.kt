@@ -99,6 +99,7 @@ class LocationService : Service() {
     private var proximityNotifiedTrattoriaChaletSulPo = false
     private var proximityNotifiedTanaDiRoncarolo = false
     private var proximityNotifiedTrattoriaIlMilanista = false
+    private var proximityNotifiedTrattoriaCattivelli = false
     private var proximityNotifiedDistributoreAcquaMortizza = false
 
 
@@ -186,6 +187,7 @@ class LocationService : Service() {
     }
 
     private fun checkProximity(location: Location) {
+        //Storia
         val stazionePC = Pair(45.051949, 9.706057)  // Stazione PC
         val torrioneFodesta = Pair(45.05640, 9.70219)  // Torrione Fodesta
         val exCentraleEmilia = Pair(45.0566477, 9.7073399)  // Ex Centrale Emilia (ANCHE IN ECONOMIA CIRCOLARE)
@@ -196,9 +198,9 @@ class LocationService : Service() {
         val ponteAV = Pair(45.07793231541073, 9.745598741245159)  // Ponte AV
         val ninoBixio = Pair(45.057645230252874, 9.707142230260848)  // Nino Bixio
         val isolottoMaggi = Pair(45.05784320256016, 9.713248336552905)  // Isolotto Maggi
-        val impiantoIdrovoroFinarda = Pair(45.055291, 9.714616)  // Impianto idrovoro Finarda (ANCHE IN ECONOMIA CIRCOLARE)
         val centraleCaorso = Pair(45.07208510840803, 9.86782820916427)  // Centrale Caorso
-    // Viabilità - mobilità ciclabile
+
+        // Viabilità - mobilità ciclabile
         val fontanellaRoncarolo = Pair(45.0655013, 9.8390417)  // Fontanella Roncarolo (ANCHE IN TURISMO)
         val areaSostaSNazzaro = Pair(45.0768997, 9.8943338)  // Area sosta S. Nazzaro (ANCHE IN TURISMO)
         val ponteSNazzaro = Pair(45.081887347122866, 9.898561404386227)  // Ponte S. Nazzaro
@@ -206,10 +208,13 @@ class LocationService : Service() {
         val partenza = Pair(45.055930, 9.702823)  // Partenza
         val ciclabilePonteSRocco = Pair(45.055930, 9.702823)  // Ciclabile Ponte S. Rocco
         val discesaDalPonte = Pair(45.058143, 9.700901)  // Discesa dal ponte
-    // Paesaggio naturale e biodiversità
+
+        // Paesaggio naturale e biodiversità
         val isolaSerafini = Pair(45.09332194310006, 9.904885527112402)  // Isola Serafini
         val oasiNaturalisticaPinedo = Pair(45.084375202603546, 9.865746896312627)  // Oasi naturalistica dell'Isola del Pinedo
-    // Economia circolare ed energia
+
+        // Economia circolare ed energia
+        val impiantoIdrovoroFinarda = Pair(45.055291, 9.714616)  // Impianto idrovoro Finarda
         val centraleTermoelettricaLevante = Pair(45.05592174155956, 9.707834527001006)  // Centrale termoelettrica ex "Levante"
         val leap = Pair(45.058188224501244, 9.705801096960299)  // LEAP
         val impiantoIdrovoroBorgoforte = Pair(45.05750958022169, 9.733062031555836)  // Impianto idrovoro Borgoforte
@@ -218,7 +223,8 @@ class LocationService : Service() {
         val centraleIdroelettricaIsolaSerafini = Pair(45.09478508718558, 9.904594069179499)  // Centrale idroelettrica Isola Serafini
         val impiantoIdrovoroArmalunga = Pair(45.05521654110569, 9.800781841884934) //Impianto idrovoro di Armalunga
         val impiantoIdrovoroConsorzioMuzio = Pair(45.105883386456426, 9.736189359512233)  // Impianto idrovoro del Consorzio Muzio
-    // Turismo
+
+        // Turismo
         val finestraSulPo = Pair(45.0760107, 9.8925903)  // La finestra sul Po
         val agriturismoBoschiCelati = Pair(45.04932571085476, 9.81132763801647)  // Agriturismo Boschi Celati
         val trattoriaMagaton = Pair(45.0586710, 9.8346721)  // Trattoria Magaton
@@ -228,6 +234,7 @@ class LocationService : Service() {
         val tanaDiRoncarolo = Pair(45.0655449, 9.8379189)  // La tana di Roncarolo
         val trattoriaIlMilanista = Pair(45.07589139606873, 9.895138352448015)  // Trattoria Il Milanista
         val distributoreAcquaMortizza = Pair(45.07815930003141, 9.756850391)  // Distributore d'acqua Mortizza
+        val trattoriaCattivelli = Pair(45.09687901677327, 9.905943726049475) //Trattoria Cattivelli
 
         val proximityThreshold = 0.00016875 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
 
