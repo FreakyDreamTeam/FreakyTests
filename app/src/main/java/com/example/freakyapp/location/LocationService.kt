@@ -538,6 +538,14 @@ class LocationService : Service() {
                     targetActivity = TrattoriaIlMilanistaActivity::class.java
                 )
             }
+            isWithinRange(lat, long, trattoriaCattivelli.first, trattoriaCattivelli.second, proximityThreshold) && !proximityNotifiedTrattoriaCattivelli -> {
+                proximityNotifiedTrattoriaCattivelli = true
+                sendNotification(
+                    title = "Sei vicino alla Trattoria Cattivelli",
+                    message = "Tocca per aprire",
+                    targetActivity = trattoriaCattivelli::class.java
+                )
+            }
             isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, proximityThreshold) && !proximityNotifiedDistributoreAcquaMortizza -> {
                 proximityNotifiedDistributoreAcquaMortizza = true
                 sendNotification(
@@ -584,6 +592,7 @@ class LocationService : Service() {
             !isWithinRange(lat, long, trattoriaChaletSulPo.first, trattoriaChaletSulPo.second, proximityThreshold) -> proximityNotifiedTrattoriaChaletSulPo = false
             !isWithinRange(lat, long, tanaDiRoncarolo.first, tanaDiRoncarolo.second, proximityThreshold) -> proximityNotifiedTanaDiRoncarolo = false
             !isWithinRange(lat, long, trattoriaIlMilanista.first, trattoriaIlMilanista.second, proximityThreshold) -> proximityNotifiedTrattoriaIlMilanista = false
+            !isWithinRange(lat, long, trattoriaCattivelli.first, trattoriaCattivelli.second, proximityThreshold) -> proximityNotifiedTrattoriaCattivelli = false
             !isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, proximityThreshold) -> proximityNotifiedDistributoreAcquaMortizza = false
         }
     }

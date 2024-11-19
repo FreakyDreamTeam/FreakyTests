@@ -74,6 +74,7 @@
         <activity android:name=".pagine_punti.TrattoriaIlMilanistaActivity" />
         <activity android:name=".pagine_punti.TrattoriaMagatonActivity" />
         <activity android:name=".pagine_punti.TrattoriaTonoliActivity" />
+        <activity android:name=".pagine_punti.TrattoriaCattivelliActivity" />
         <service
             android:name=".location.LocationService"
             android:foregroundServiceType="location" />

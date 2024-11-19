@@ -53,11 +53,6 @@ class TrattoriaCattivelliActivity : ComponentActivity(){
 
 @Composable
 fun cattivelli(window: Window){
-
-    val robotoFontFamily = FontFamily(
-        Font(R.font.roboto_light)
-    )
-
     if(isSystemInDarkTheme()){
         window.navigationBarColor = colorResource(R.color.verdenegro).toArgb()
         Column(
@@ -111,7 +106,7 @@ fun cattivelli(window: Window){
             Text(
                 text = "Sito ufficiale",
                 fontSize = 18.sp,
-                color = Color.Black,
+                color = Color.White,
                 modifier = Modifier
                     .clickable {
                         val url = "http://www.trattoriacattivelli.it/"
@@ -146,7 +141,7 @@ fun cattivelli(window: Window){
             Box(modifier = Modifier.padding(bottom = 4.dp, start = 32.dp, end = 32.dp)){
                 Image(
                     painter = painterResource(R.drawable.trattoria_cattivelli),
-                    contentDescription = "levante",
+                    contentDescription = "cattivelli",
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(3f / 2f)

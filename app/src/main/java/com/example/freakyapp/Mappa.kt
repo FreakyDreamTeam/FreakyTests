@@ -76,6 +76,7 @@ fun Map(navController: NavController, modifier: Modifier = Modifier) {
                 addMarker(this, GeoPoint(45.1130937, 9.7596986), "Trattoria Chalet sul Po", context, TrattoriaChaletSulPoActivity::class.java)
                 addMarker(this, GeoPoint(45.0655449, 9.8379189), "La tana di Roncarolo", context, TanaDiRoncaroloActivity::class.java)
                 addMarker(this, GeoPoint(45.07589139606873, 9.895138352448015), "Trattoria Il Milanista", context, TrattoriaIlMilanistaActivity::class.java)
+                addMarker(this, GeoPoint(45.09687901677327, 9.905943726049475), "Trattoria Cattivelli", context, TrattoriaCattivelliActivity::class.java)
                 addMarker(this, GeoPoint(45.07815930003141, 9.756850391), "Distributore d'acqua Mortizza", context, DistributoreAcquaMortizzaActivity::class.java)
             }
         }
