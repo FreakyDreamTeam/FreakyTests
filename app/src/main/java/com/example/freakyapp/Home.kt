@@ -28,6 +28,40 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.accompanist.pager.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
+
+
+var text_light = buildAnnotatedString {
+    withStyle(style = SpanStyle(color = Color.Black)) {
+        append("Pa")
+    }
+    withStyle(style = SpanStyle(color = Color(0xFFed4040))) {
+        append("(e)(s)")
+    }
+    withStyle(style = SpanStyle(color = Color.Black)) {
+        append("saggio di testimone")
+    }
+}
+
+var text_dark = buildAnnotatedString {
+    withStyle(style = SpanStyle(color = Color(0xFFed4040))) {
+        append("Pa")
+    }
+    withStyle(style = SpanStyle(color = Color.White)) {
+        append("(e)(s)")
+    }
+    withStyle(style = SpanStyle(color = Color(0xFFed4040))) {
+        append("saggio di testimone")
+    }
+}
+
 
 @Composable
 fun Home() {
@@ -50,13 +84,23 @@ fun Home() {
                     .clip(RoundedCornerShape(8.dp)) // Optional: angoli arrotondati se desiderato
             )
 
-            Text(
-                text = "   Pa(e)(s)saggio di testimone",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFFed4040), // Colore verde scuro del titolo c01010
-                modifier = Modifier.padding(bottom = 4.dp) // Margine inferiore
-            )
+            if(isSystemInDarkTheme()){
+                Text(
+                    text = text_dark,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White, // Colore verde scuro del titolo c01010
+                    modifier = Modifier.padding(start = 8.dp, bottom = 4.dp)
+                )
+            } else {
+                Text(
+                    text = text_light,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFed4040), // Colore verde scuro del titolo c01010
+                    modifier = Modifier.padding(start = 8.dp, bottom = 4.dp) // Margine inferiore
+                )
+            }
         }
 
 
@@ -122,26 +166,78 @@ fun Home() {
             Spacer(modifier = Modifier.height(16.dp))
         }
 
+        ImageCarousel()
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        val text2_dark  = buildAnnotatedString {
+            withStyle(style = SpanStyle(color = Color(0xFFed4040))) {
+                append("Pa")
+            }
+            withStyle(style = SpanStyle(color = Color.White)) {
+                append("(e)(s)")
+            }
+            withStyle(style = SpanStyle(color = Color(0xFFed4040))) {
+                append("saggio di testimone è anche...")
+            }
+        }
+
+        val text2_light  = buildAnnotatedString {
+            withStyle(style = SpanStyle(color = Color.Black)) {
+                append("Pa")
+            }
+            withStyle(style = SpanStyle(color = Color(0xFFed4040))) {
+                append("(e)(s)")
+            }
+            withStyle(style = SpanStyle(color = Color.Black)) {
+                append("saggio di testimone è anche...")
+            }
+        }
+
+        if(isSystemInDarkTheme()){
+            Text(
+                text = text2_dark,
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White, // Colore verde scuro del titolo
+                modifier = Modifier.padding(bottom = 4.dp), // Margine inferiore
+                textAlign = TextAlign.Center
+            )
+        } else {
+            Text(
+                text = text2_light,
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White, // Colore verde scuro del titolo
+                modifier = Modifier.padding(bottom = 4.dp), // Margine inferiore
+                textAlign = TextAlign.Center
+            )
+        }
+
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+
         // Primo elemento
         SectionItemNoClick(
-            title = "Punto #1",
-            description = "La progettazione e sviluppo di un sito web con una mappa interattiva e georeferenziata dei punti di interesse che diventi patrimonio condiviso anche con cittadini e turisti che si trovino a frequentare gli stessi luoghi. La manutenzione/implementazione nel tempo sarà oggetto laboratoriale.",
+            title = "Mappa interattiva",
+            description = "un sito web con una mappa interattiva e georeferenziata dei punti di interesse come patrimonio condiviso con cittadini e turisti che si trovino a frequentare gli stessi luoghi.",
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // Secondo elemento
         SectionItemNoClick(
-            title = "Punto #2",
-            description = "La realizzazione di un’App sviluppata in Android che abbia alcune caratteristiche del sito web, in più possa geolocalizzare l’utente che fa il percorso in bicicletta e man mano gli dia informazioni sui punti di interesse in tempo reale.",
+            title = "App Android",
+            description = "un’app sviluppata in Android capace di geolocalizzare l’utente lungo il percorso in bicicletta e di fornirgli informazioni sui punti di interesse vicini a lui.",
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // Terzo elemento
         SectionItemNoClick(
-            title = "Punto #3",
-            description = "La progettazione di un format per il racconto del tracciato che possa essere messo a disposizione delle scuole di territori prospicienti il fiume, per documentare analoghi percorsi di esplorazione educativa al paesaggio.",
+            title = "Format",
+            description = "un format per il racconto del tracciato che viene messo a disposizione delle scuole di territori prospicienti il fiume, per documentare analoghi percorsi di esplorazione educativa al paesaggio.",
         )
     }
 }
@@ -240,71 +336,85 @@ fun SectionItemNoClick(
 
 
 
-//@Composable
-//fun Home(){
-//    Column (
-//        modifier = Modifier
-//            .verticalScroll(rememberScrollState())
-//    ) {
-//        Box(
-//            modifier = Modifier
-//        ) {
-//            Image(
-//                painter = painterResource(id = R.drawable.po_2_scaled),
-//                contentDescription = "Descrizione dell'immagine",
-//                contentScale = ContentScale.Crop,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(200.dp)
-//                    .align(Alignment.TopCenter)
-//                    .padding(top = 20.dp)
-//            )
-//
-//            val text = buildAnnotatedString {
-//                withStyle(style = SpanStyle(color = Color.Red)) {
-//                    append("PA(e)")
-//                }
-//                withStyle(style = SpanStyle(color = Color.Black)) {
-//                    append("(s)")
-//                }
-//                withStyle(style = SpanStyle(color = Color.Red)) {
-//                    append("SAGGIO ")
-//                }
-//                withStyle(style = SpanStyle(color = Color.Black)) {
-//                    append("DI\n")
-//                }
-//                withStyle(style = SpanStyle(color = Color.Black)) {
-//                    append("TESTIMONE\n")
-//                }
-//            }
-//
-//            Text(
-//                text = text,
-//                style = MaterialTheme.typography.headlineMedium,
-//                modifier = Modifier
-//                    .align(Alignment.TopCenter)
-//                    .padding(top = 80.dp),
-//                textAlign = TextAlign.Center
-//            )
-//        }
-//
-//        //Spacer(modifier = Modifier.height(50.dp))
-//        /*
-//        Image(
-//            painter = painterResource(id = R.drawable.tigre),
-//            contentDescription = "seconda immagine",
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(20.dp)
-//        )*/
-//
-//        Text(
-//            modifier = Modifier//🐲🫦👅fweh
-//                .padding(start = 20.dp, end = 20.dp, top = 20.dp),
-//                //.padding(horizontal = 20.dp),
-//            textAlign = TextAlign.Justify,
-//            fontWeight = FontWeight(1000),
-//            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed metus non velit imperdiet commodo. Vestibulum volutpat porta dolor, sit amet tincidunt tortor cursus ut. Suspendisse non posuere nulla. Suspendisse felis nunc, porta at lacinia vehicula, tempor sed justo. Phasellus in est cursus tortor convallis semper cursus at est. Ut ullamcorper tortor pulvinar vulputate vehicula. Nunc ac neque in magna semper ultricies. Integer vitae tincidunt ligula, in dictum augue. Sed vitae fringilla est. Duis et eleifend tellus, a pulvinar augue. Etiam venenatis enim a sem feugiat finibus. Nunc vitae eros neque. Suspendisse tellus orci, sodales et convallis quis, pellentesque ut felis. Sed aliquet tincidunt auctor.Nam tempor orci purus. Morbi at metus ut libero laoreet lacinia nec eget elit. Praesent fringilla congue augue at tristique. Integer mauris velit, semper vestibulum pharetra eget, interdum a turpis. Nunc gravida vehicula lorem a mattis. In vel tortor efficitur nisi pharetra finibus non non nibh. Cras dignissim auctor condimentum. Sed faucibus fermentum gravida. Donec id euismod elit. Pellentesque tincidunt nisi in fermentum ultrices. Donec arcu dui, ultrices in porta a, sagittis gravida tellus."
-//        )
-//    }
-//}
+@Composable
+fun ImageCarousel() {
+    val pagerState = rememberPagerState()
+
+    // Lista di elementi da mostrare
+    val carouselItems = listOf(
+        CarouselItem(
+            imageRes = R.drawable.carosello1,
+            description = "Il progetto didattico Pa(e)(s)saggio di testimone nasce nel 2019 come laboratorio di lettura dei paesaggi fluviali, con utilizzo del linguaggio fotografico, condotto da INFOAMBIENTE (CEAS del Comune di Piacenza e parte attiva della Rete di Educazione alla Sostenibilità della Regione Emilia Romagna) sugli argini del Po, sul tracciato della futura ciclovia VENTO e nella riserva MAB UNESCO “PO GRANDE”."
+        ),
+        CarouselItem(
+            imageRes = R.drawable.carosello2,
+            description = "A partire da una prima esperienza, che realizzò la stampa in formato cartolina di 25 foto – scattate sul fiume Po dai partecipanti al corso di fotografia del paesaggio piacentino (docente: Anna Maria Belloni), cui furono abbinati testi dei ragazzi e delle ragazze delle scuole Carducci e Nicolini - dal 2021 il laboratorio permanente si è arricchito della esperienza di un percorso ad anello in bicicletta sugli argini fluviali, sperimentata con TRASPONDE, progetto coordinato da Politecnico di Milano e Autorità di Bacino Distrettuale del Fiume Po, per studiare ipotesi sostenibili di riattivazione di un servizio di traghettamento fluviale a supporto delle reti di mobilità lenta turistica."
+        ),
+        CarouselItem(
+            imageRes = R.drawable.carosello3,
+            description = "Questo sito e l’app che lo completa sono il prezioso contributo sviluppato nel 2024 da due classi dell’ISII Marconi – corso F della sezione Informatica– che dopo aver sperimentato il laboratorio nel 2021, ne sono diventate attive protagoniste fino a portarne i contenuti a Lisbona, in occasione di uno scambio Erasmus, e a mettere a disposizione le loro competenze informatiche per la realizzazione di un prodotto innovativo di valorizzazione del paesaggio fluviale e di promozione turistica del territorio, per diffondere i contenuti del progetto in una sorta di \"passaggio di testimone\"."
+        ),
+        CarouselItem(
+            imageRes = R.drawable.carosello4,
+            description = "La mappa interattiva e georeferenziata dei punti di interesse, a supporto di future uscite didattiche ma anche come modello per documentare analoghi percorsi di esplorazione educativa al paesaggio, diventa quindi patrimonio condiviso anche con cittadini e turisti che si trovino a frequentare gli stessi luoghi per il riflettere sui concetti di siti tutelati, corridoio ecologico, bacino fluviale, biodiversità, consapevolezza delle conseguenze dei nostri comportamenti, turismo responsabile ed economie sostenibili, spazi e soluzioni adeguate per favorire la ciclopedonalità, sicurezza stradale, produzione energetica, promozione territoriale oltreché per valorizzazione la bicicletta come perfetto mezzo di conoscenza dei territori marginali"
+        )
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        HorizontalPager(
+            count = carouselItems.size,
+            state = pagerState,
+            modifier = Modifier.fillMaxWidth()
+        ) { page ->
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .height(700.dp)
+            ) {
+                // Mostra immagine
+                Image(
+                    painter = painterResource(id = carouselItems[page].imageRes),
+                    contentDescription = "Image $page",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+
+                // Overlay semi-trasparente
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.5f)) // Aumenta o diminuisci `alpha` per regolare l'opacità
+                )
+
+                // Mostra testo sovrapposto
+                Text(
+                    text = carouselItems[page].description,
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(16.dp)
+                )
+            }
+        }
+
+        // Indicatori per le pagine
+        HorizontalPagerIndicator(
+            pagerState = pagerState,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(16.dp)
+        )
+    }
+}
+
+// Modello dati per ogni elemento del carosello
+data class CarouselItem(
+    val imageRes: Int,
+    val description: String
+)
