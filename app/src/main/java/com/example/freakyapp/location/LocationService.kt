@@ -148,7 +148,7 @@ class LocationService : Service() {
                 val updatedNotification = NotificationCompat.Builder(this, "location_channel")
                     .setContentTitle("Tracking location...")
                     .setContentText("Location: ($lat, $long)")
-                    .setSmallIcon(R.drawable.ic_launcher_background)
+                    .setSmallIcon(R.mipmap.logo)
                     .setOngoing(true)
                     .setSound(null) // Silenziosa
                     .setVibrate(null)
@@ -166,7 +166,7 @@ class LocationService : Service() {
             1, NotificationCompat.Builder(this, "location_channel")
                 .setContentTitle("Tracking location...")
                 .setContentText("Location: null")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.mipmap.logo)
                 .setOngoing(true)
                 .setSound(null)
                 .setVibrate(null)
@@ -194,7 +194,7 @@ class LocationService : Service() {
         val ponteSanRocco = Pair(45.061327, 9.703623)  // Ponte San Rocco
         val ponteAutostrada = Pair(45.065589, 9.734353)  // Ponte autostrada
         val ponteAV = Pair(45.07793231541073, 9.745598741245159)  // Ponte AV
-        val ninoBixio = Pair(45.057645230252874, 9.707142230260848)  // Nino Bixio
+        val ninoBixio = Pair(45.058188224501244, 9.705801096960299)  //45.058188224501244, 9.705801096960299 Nino Bixio
         val isolottoMaggi = Pair(45.05784320256016, 9.713248336552905)  // Isolotto Maggi
         val centraleCaorso = Pair(45.07208510840803, 9.86782820916427)  // Centrale Caorso
 
@@ -214,7 +214,7 @@ class LocationService : Service() {
         // Economia circolare ed energia
         val impiantoIdrovoroFinarda = Pair(45.055291, 9.714616)  // Impianto idrovoro Finarda
         val centraleTermoelettricaLevante = Pair(45.05592174155956, 9.707834527001006)  // Centrale termoelettrica ex "Levante"
-        val leap = Pair(45.058188224501244, 9.705801096960299)  // LEAP
+        val leap = Pair(45.057645230252874, 9.707142230260848)  // LEAP
         val depuratoreBorgoforte = Pair(45.05949270337371, 9.732816388159177)  // Depuratore Borgoforte
         val termovalorizzatoreBorgoforte = Pair(45.05750958022169, 9.733062031555836)  // Termovalorizzatore Borgoforte
         val centraleIdroelettricaIsolaSerafini = Pair(45.09478508718558, 9.904594069179499)  // Centrale idroelettrica Isola Serafini
@@ -233,7 +233,11 @@ class LocationService : Service() {
         val distributoreAcquaMortizza = Pair(45.07815930003141, 9.756850391)  // Distributore d'acqua Mortizza
         val trattoriaCattivelli = Pair(45.09687901677327, 9.905943726049475) //Trattoria Cattivelli
 
-        val proximityThreshold = 0.00016875 // Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
+        val proximityThreshold = 0.001801801 // 200 metri - Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
+        val thresh400 = 0.003603603 //400 metri
+        val thresh550 = 0.004954954 //550 metri
+        val thresh1500 = 0.013513513 //1500 metri
+
 
         val lat = location.latitude
         val long = location.longitude
@@ -287,7 +291,7 @@ class LocationService : Service() {
                     targetActivity = PonteSanRoccoActivity::class.java
                 )
             }
-            isWithinRange(lat, long, ponteAutostrada.first, ponteAutostrada.second, proximityThreshold) && !proximityNotifiedPonteAutostrada -> {
+            isWithinRange(lat, long, ponteAutostrada.first, ponteAutostrada.second, thresh550) && !proximityNotifiedPonteAutostrada -> {
                 proximityNotifiedPonteAutostrada = true
                 sendNotification(
                     title = "Sei vicino al Ponte autostrada",
@@ -295,7 +299,7 @@ class LocationService : Service() {
                     targetActivity = PonteAutostradaActivity::class.java
                 )
             }
-            isWithinRange(lat, long, ponteAV.first, ponteAV.second, proximityThreshold) && !proximityNotifiedPonteAV -> {
+            isWithinRange(lat, long, ponteAV.first, ponteAV.second, thresh550) && !proximityNotifiedPonteAV -> {
                 proximityNotifiedPonteAV = true
                 sendNotification(
                     title = "Sei vicino al Ponte AV",
@@ -311,7 +315,7 @@ class LocationService : Service() {
                     targetActivity = NinoBixioActivity::class.java
                 )
             }
-            isWithinRange(lat, long, isolottoMaggi.first, isolottoMaggi.second, proximityThreshold) && !proximityNotifiedIsolottoMaggi -> {
+            isWithinRange(lat, long, isolottoMaggi.first, isolottoMaggi.second, thresh400) && !proximityNotifiedIsolottoMaggi -> {
                 proximityNotifiedIsolottoMaggi = true
                 sendNotification(
                     title = "Sei vicino a Isolotto Maggi",
@@ -327,7 +331,7 @@ class LocationService : Service() {
                     targetActivity = ImpiantoIdrovoroFinardaActivity::class.java
                 )
             }
-            isWithinRange(lat, long, centraleCaorso.first, centraleCaorso.second, proximityThreshold) && !proximityNotifiedCentraleCaorso -> {
+            isWithinRange(lat, long, centraleCaorso.first, centraleCaorso.second, thresh1500) && !proximityNotifiedCentraleCaorso -> {
                 proximityNotifiedCentraleCaorso = true
                 sendNotification(
                     title = "Sei vicino alla Centrale Caorso",
@@ -399,7 +403,7 @@ class LocationService : Service() {
                     targetActivity = IsolaSerafiniActivity::class.java
                 )
             }
-            isWithinRange(lat, long, oasiNaturalisticaPinedo.first, oasiNaturalisticaPinedo.second, proximityThreshold) && !proximityNotifiedOasiNaturalisticaPinedo -> {
+            isWithinRange(lat, long, oasiNaturalisticaPinedo.first, oasiNaturalisticaPinedo.second, threshold = 0.006306306) && !proximityNotifiedOasiNaturalisticaPinedo -> {
                 proximityNotifiedOasiNaturalisticaPinedo = true
                 sendNotification(
                     title = "Sei vicino all'Oasi naturalistica dell'Isola del Pinedo",
@@ -431,7 +435,7 @@ class LocationService : Service() {
                     targetActivity = DepuratoreBorgoforteActivity::class.java
                 )
             }
-            isWithinRange(lat, long, termovalorizzatoreBorgoforte.first, termovalorizzatoreBorgoforte.second, proximityThreshold) && !proximityNotifiedTermovalorizzatoreBorgoforte -> {
+            isWithinRange(lat, long, termovalorizzatoreBorgoforte.first, termovalorizzatoreBorgoforte.second, thresh400) && !proximityNotifiedTermovalorizzatoreBorgoforte -> {
                 proximityNotifiedTermovalorizzatoreBorgoforte = true
                 sendNotification(
                     title = "Sei vicino al Termovalorizzatore Borgoforte",
@@ -471,7 +475,7 @@ class LocationService : Service() {
                     targetActivity = FinestraSulPoActivity::class.java
                 )
             }
-            isWithinRange(lat, long, agriturismoBoschiCelati.first, agriturismoBoschiCelati.second, proximityThreshold) && !proximityNotifiedAgriturismoBoschiCelati -> {
+            isWithinRange(lat, long, agriturismoBoschiCelati.first, agriturismoBoschiCelati.second, threshold = 0.003153153) && !proximityNotifiedAgriturismoBoschiCelati -> {
                 proximityNotifiedAgriturismoBoschiCelati = true
                 sendNotification(
                     title = "Sei vicino all'Agriturismo Boschi Celati",
@@ -495,7 +499,7 @@ class LocationService : Service() {
                     targetActivity = TrattoriaTonoliActivity::class.java
                 )
             }
-            isWithinRange(lat, long, trattoriaDeiViaggiatori.first, trattoriaDeiViaggiatori.second, proximityThreshold) && !proximityNotifiedTrattoriaDeiViaggiatori -> {
+            isWithinRange(lat, long, trattoriaDeiViaggiatori.first, trattoriaDeiViaggiatori.second, thresh1500) && !proximityNotifiedTrattoriaDeiViaggiatori -> {
                 proximityNotifiedTrattoriaDeiViaggiatori = true
                 sendNotification(
                     title = "Sei vicino alla Trattoria dei Viaggiatori",
@@ -511,7 +515,7 @@ class LocationService : Service() {
                     targetActivity = TrattoriaChaletSulPoActivity::class.java
                 )
             }
-            isWithinRange(lat, long, tanaDiRoncarolo.first, tanaDiRoncarolo.second, proximityThreshold) && !proximityNotifiedTanaDiRoncarolo -> {
+            isWithinRange(lat, long, tanaDiRoncarolo.first, tanaDiRoncarolo.second, threshold = 0.001351351) && !proximityNotifiedTanaDiRoncarolo -> {
                 proximityNotifiedTanaDiRoncarolo = true
                 sendNotification(
                     title = "Sei vicino alla Tana di Roncarolo",
@@ -535,7 +539,7 @@ class LocationService : Service() {
                     targetActivity = trattoriaCattivelli::class.java
                 )
             }
-            isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, proximityThreshold) && !proximityNotifiedDistributoreAcquaMortizza -> {
+            isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, thresh400) && !proximityNotifiedDistributoreAcquaMortizza -> {
                 proximityNotifiedDistributoreAcquaMortizza = true
                 sendNotification(
                     title = "Sei vicino al Distributore d'acqua Mortizza",
@@ -550,12 +554,12 @@ class LocationService : Service() {
             !isWithinRange(lat, long, ponteDelleCeramiche.first, ponteDelleCeramiche.second, proximityThreshold) -> proximityNotifiedPonteDelleCeramiche = false
             !isWithinRange(lat, long, ponteFerroviario.first, ponteFerroviario.second, proximityThreshold) -> proximityNotifiedPonteFerroviario = false
             !isWithinRange(lat, long, ponteSanRocco.first, ponteSanRocco.second, proximityThreshold) -> proximityNotifiedPonteSanRocco = false
-            !isWithinRange(lat, long, ponteAutostrada.first, ponteAutostrada.second, proximityThreshold) -> proximityNotifiedPonteAutostrada = false
-            !isWithinRange(lat, long, ponteAV.first, ponteAV.second, proximityThreshold) -> proximityNotifiedPonteAV = false
+            !isWithinRange(lat, long, ponteAutostrada.first, ponteAutostrada.second, thresh550) -> proximityNotifiedPonteAutostrada = false
+            !isWithinRange(lat, long, ponteAV.first, ponteAV.second, thresh550) -> proximityNotifiedPonteAV = false
             !isWithinRange(lat, long, ninoBixio.first, ninoBixio.second, proximityThreshold) -> proximityNotifiedNinoBixio = false
-            !isWithinRange(lat, long, isolottoMaggi.first, isolottoMaggi.second, proximityThreshold) -> proximityNotifiedIsolottoMaggi = false
+            !isWithinRange(lat, long, isolottoMaggi.first, isolottoMaggi.second, thresh400) -> proximityNotifiedIsolottoMaggi = false
             !isWithinRange(lat, long, impiantoIdrovoroFinarda.first, impiantoIdrovoroFinarda.second, proximityThreshold) -> proximityNotifiedImpiantoIdrovoroFinarda = false
-            !isWithinRange(lat, long, centraleCaorso.first, centraleCaorso.second, proximityThreshold) -> proximityNotifiedCentraleCaorso = false
+            !isWithinRange(lat, long, centraleCaorso.first, centraleCaorso.second, thresh1500) -> proximityNotifiedCentraleCaorso = false
             !isWithinRange(lat, long, fontanellaRoncarolo.first, fontanellaRoncarolo.second, proximityThreshold) -> proximityNotifiedFontanellaRoncarolo = false
             !isWithinRange(lat, long, areaSostaSNazzaro.first, areaSostaSNazzaro.second, proximityThreshold) -> proximityNotifiedAreaSostaSNazzaro = false
             !isWithinRange(lat, long, ponteSNazzaro.first, ponteSNazzaro.second, proximityThreshold) -> proximityNotifiedPonteSNazzaro = false
@@ -564,24 +568,24 @@ class LocationService : Service() {
             !isWithinRange(lat, long, ciclabilePonteSRocco.first, ciclabilePonteSRocco.second, proximityThreshold) -> proximityNotifiedCiclabilePonteSRocco = false
             !isWithinRange(lat, long, discesaDalPonte.first, discesaDalPonte.second, proximityThreshold) -> proximityNotifiedDiscesaDalPonte = false
             !isWithinRange(lat, long, isolaSerafini.first, isolaSerafini.second, proximityThreshold) -> proximityNotifiedIsolaSerafini = false
-            !isWithinRange(lat, long, oasiNaturalisticaPinedo.first, oasiNaturalisticaPinedo.second, proximityThreshold) -> proximityNotifiedOasiNaturalisticaPinedo = false
+            !isWithinRange(lat, long, oasiNaturalisticaPinedo.first, oasiNaturalisticaPinedo.second, threshold = 0.006306306) -> proximityNotifiedOasiNaturalisticaPinedo = false
             !isWithinRange(lat, long, centraleTermoelettricaLevante.first, centraleTermoelettricaLevante.second, proximityThreshold) -> proximityNotifiedCentraleTermoelettricaLevante = false
             !isWithinRange(lat, long, leap.first, leap.second, proximityThreshold) -> proximityNotifiedLeap = false
             !isWithinRange(lat, long, depuratoreBorgoforte.first, depuratoreBorgoforte.second, proximityThreshold) -> proximityNotifiedDepuratoreBorgoforte = false
-            !isWithinRange(lat, long, termovalorizzatoreBorgoforte.first, termovalorizzatoreBorgoforte.second, proximityThreshold) -> proximityNotifiedTermovalorizzatoreBorgoforte = false
+            !isWithinRange(lat, long, termovalorizzatoreBorgoforte.first, termovalorizzatoreBorgoforte.second, thresh400) -> proximityNotifiedTermovalorizzatoreBorgoforte = false
             !isWithinRange(lat, long, centraleIdroelettricaIsolaSerafini.first, centraleIdroelettricaIsolaSerafini.second, proximityThreshold) -> proximityNotifiedCentraleIdroelettricaIsolaSerafini = false
             !isWithinRange(lat, long, impiantoIdrovoroArmalunga.first, impiantoIdrovoroArmalunga.second, proximityThreshold) -> proximityNotifiedImpiantoIdrovoroArmalunga = false
             !isWithinRange(lat, long, impiantoIdrovoroConsorzioMuzio.first, impiantoIdrovoroConsorzioMuzio.second, proximityThreshold) -> proximityNotifiedImpiantoIdrovoroConsorzioMuzio = false
             !isWithinRange(lat, long, finestraSulPo.first, finestraSulPo.second, proximityThreshold) -> proximityNotifiedFinestraSulPo = false
-            !isWithinRange(lat, long, agriturismoBoschiCelati.first, agriturismoBoschiCelati.second, proximityThreshold) -> proximityNotifiedAgriturismoBoschiCelati = false
+            !isWithinRange(lat, long, agriturismoBoschiCelati.first, agriturismoBoschiCelati.second, threshold = 0.003153153) -> proximityNotifiedAgriturismoBoschiCelati = false
             !isWithinRange(lat, long, trattoriaMagaton.first, trattoriaMagaton.second, proximityThreshold) -> proximityNotifiedTrattoriaMagaton = false
             !isWithinRange(lat, long, trattoriaTonoli.first, trattoriaTonoli.second, proximityThreshold) -> proximityNotifiedTrattoriaTonoli = false
-            !isWithinRange(lat, long, trattoriaDeiViaggiatori.first, trattoriaDeiViaggiatori.second, proximityThreshold) -> proximityNotifiedTrattoriaDeiViaggiatori = false
+            !isWithinRange(lat, long, trattoriaDeiViaggiatori.first, trattoriaDeiViaggiatori.second, thresh1500) -> proximityNotifiedTrattoriaDeiViaggiatori = false
             !isWithinRange(lat, long, trattoriaChaletSulPo.first, trattoriaChaletSulPo.second, proximityThreshold) -> proximityNotifiedTrattoriaChaletSulPo = false
-            !isWithinRange(lat, long, tanaDiRoncarolo.first, tanaDiRoncarolo.second, proximityThreshold) -> proximityNotifiedTanaDiRoncarolo = false
+            !isWithinRange(lat, long, tanaDiRoncarolo.first, tanaDiRoncarolo.second, threshold = 0.001351351) -> proximityNotifiedTanaDiRoncarolo = false
             !isWithinRange(lat, long, trattoriaIlMilanista.first, trattoriaIlMilanista.second, proximityThreshold) -> proximityNotifiedTrattoriaIlMilanista = false
             !isWithinRange(lat, long, trattoriaCattivelli.first, trattoriaCattivelli.second, proximityThreshold) -> proximityNotifiedTrattoriaCattivelli = false
-            !isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, proximityThreshold) -> proximityNotifiedDistributoreAcquaMortizza = false
+            !isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, thresh400) -> proximityNotifiedDistributoreAcquaMortizza = false
         }
     }
 
@@ -606,7 +610,7 @@ class LocationService : Service() {
         )
 
         val notification = NotificationCompat.Builder(this, "location_channel")
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.mipmap.logo)
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
