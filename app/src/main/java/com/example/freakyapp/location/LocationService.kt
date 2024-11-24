@@ -238,7 +238,6 @@ class LocationService : Service() {
         val thresh550 = 0.004954954 //550 metri
         val thresh1500 = 0.013513513 //1500 metri
 
-
         val lat = location.latitude
         val long = location.longitude
 
