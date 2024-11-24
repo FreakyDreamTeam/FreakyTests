@@ -297,19 +297,19 @@ fun SectionPaesaggio() {
         Spacer(modifier = Modifier.height(16.dp))
 
         SectionItemActivity(
-            imageRes = R.drawable.fauna,
-            title = "Fauna",
-            description = "La ricchezza della flora si riflette anche sulla fauna presente in questo tratto del fiume Po. Grazie all’abbondante presenza d’acqua e alla diversità di ambienti, il sito ospita una notevole varietà di specie animali. Tra gli uccelli spiccano la nitticora e l’occhione. Altre specie nidificanti legate agli ambienti acquatici sono l’airone rosso, la garzetta ed…",
-            targetActivity = FaunaActivity::class.java
+            imageRes = R.drawable.flora,
+            title = "Flora",
+            description = "Il tratto del fiume Po che attraversa la provincia di Piacenza è caratterizzato da una flora estremamente varia e ricca. Sono presenti vaste piantagioni di pioppi che costeggiano il fiume per gran parte del suo percorso. Queste piantagioni sono frutto di un’attenta gestione e coltivazione, volte a preservare l’integrità del paesaggio e la salute delle…",
+            targetActivity = FloraActivity::class.java
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         SectionItemActivity(
-            imageRes = R.drawable.flora,
-            title = "Flora",
-            description = "Il tratto del fiume Po che attraversa la provincia di Piacenza è caratterizzato da una flora estremamente varia e ricca. Sono presenti vaste piantagioni di pioppi che costeggiano il fiume per gran parte del suo percorso. Queste piantagioni sono frutto di un’attenta gestione e coltivazione, volte a preservare l’integrità del paesaggio e la salute delle…",
-            targetActivity = FloraActivity::class.java
+            imageRes = R.drawable.fauna,
+            title = "Fauna",
+            description = "La ricchezza della flora si riflette anche sulla fauna presente in questo tratto del fiume Po. Grazie all’abbondante presenza d’acqua e alla diversità di ambienti, il sito ospita una notevole varietà di specie animali. Tra gli uccelli spiccano la nitticora e l’occhione. Altre specie nidificanti legate agli ambienti acquatici sono l’airone rosso, la garzetta ed…",
+            targetActivity = FaunaActivity::class.java
         )
     }
 }
