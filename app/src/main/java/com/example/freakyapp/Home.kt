@@ -3,7 +3,6 @@ package com.example.freakyapp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,9 +28,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -102,7 +98,6 @@ fun Home() {
                 )
             }
         }
-
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -214,9 +209,7 @@ fun Home() {
             )
         }
 
-
         Spacer(modifier = Modifier.height(16.dp))
-
 
         // Primo elemento
         SectionItemNoClick(
@@ -333,9 +326,6 @@ fun SectionItemNoClick(
     }
 }
 
-
-
-
 @Composable
 fun ImageCarousel() {
     val pagerState = rememberPagerState()
@@ -352,11 +342,11 @@ fun ImageCarousel() {
         ),
         CarouselItem(
             imageRes = R.drawable.carosello3,
-            description = "Questo sito e l’app che lo completa sono il prezioso contributo sviluppato nel 2024 da due classi dell’ISII Marconi – corso F della sezione Informatica– che dopo aver sperimentato il laboratorio nel 2021, ne sono diventate attive protagoniste fino a portarne i contenuti a Lisbona, in occasione di uno scambio Erasmus, e a mettere a disposizione le loro competenze informatiche per la realizzazione di un prodotto innovativo di valorizzazione del paesaggio fluviale e di promozione turistica del territorio, per diffondere i contenuti del progetto in una sorta di \"passaggio di testimone\"."
+            description = "Questa app e il sito web sono il prezioso contributo sviluppato nel 2024 da due classi dell’ISII Marconi – corso F della sezione Informatica – che dopo aver sperimentato il laboratorio nel 2021, ne sono diventate attive protagoniste fino a portarne i contenuti a Lisbona, in occasione di uno scambio Erasmus, e a mettere a disposizione le loro competenze informatiche per la realizzazione di un prodotto innovativo di valorizzazione del paesaggio fluviale e di promozione turistica del territorio, per diffondere i contenuti del progetto in una sorta di \"passaggio di testimone\"."
         ),
         CarouselItem(
             imageRes = R.drawable.carosello4,
-            description = "La mappa interattiva e georeferenziata dei punti di interesse, a supporto di future uscite didattiche ma anche come modello per documentare analoghi percorsi di esplorazione educativa al paesaggio, diventa quindi patrimonio condiviso anche con cittadini e turisti che si trovino a frequentare gli stessi luoghi per il riflettere sui concetti di siti tutelati, corridoio ecologico, bacino fluviale, biodiversità, consapevolezza delle conseguenze dei nostri comportamenti, turismo responsabile ed economie sostenibili, spazi e soluzioni adeguate per favorire la ciclopedonalità, sicurezza stradale, produzione energetica, promozione territoriale oltreché per valorizzazione la bicicletta come perfetto mezzo di conoscenza dei territori marginali"
+            description = "La mappa interattiva e georeferenziata dei punti di interesse, a supporto di future uscite didattiche ma anche come modello per documentare analoghi percorsi di esplorazione educativa al paesaggio, diventa quindi patrimonio condiviso anche con cittadini e turisti che si trovino a frequentare gli stessi luoghi per il riflettere sui concetti di siti tutelati, corridoio ecologico, bacino fluviale, biodiversità, consapevolezza delle conseguenze dei nostri comportamenti, turismo responsabile ed economie sostenibili, spazi e soluzioni adeguate per favorire la ciclopedonalità, sicurezza stradale, produzione energetica, promozione territoriale oltreché per valorizzazione la bicicletta come perfetto mezzo di conoscenza dei territori marginali."
         )
     )
 
@@ -373,7 +363,7 @@ fun ImageCarousel() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
-                    .height(700.dp)
+                    .height(600.dp)
             ) {
                 // Mostra immagine
                 Image(

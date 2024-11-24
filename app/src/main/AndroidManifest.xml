@@ -45,8 +45,11 @@
         <activity android:name=".pagine_punti.DepuratoreBorgoforteActivity" />
         <activity android:name=".pagine_punti.DiscesaDalPonteActivity" />
         <activity android:name=".pagine_punti.DistributoreAcquaMortizzaActivity" />
+        <activity android:name=".pagine_punti.ElementiClimaticiActivity" />
         <activity android:name=".pagine_punti.ExCentraleEmiliaActivity" />
         <activity android:name=".pagine_punti.FinestraSulPoActivity" />
+        <activity android:name=".pagine_punti.FloraActivity" />
+        <activity android:name=".pagine_punti.FaunaActivity" />
         <activity android:name=".pagine_punti.FontanellaRoncaroloActivity" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroBorgoforteActivity" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroArmalungaActivity" />
@@ -59,6 +62,7 @@
         <activity android:name=".pagine_punti.OasiNaturalisticaPinedoActivity" />
         <activity android:name=".pagine_punti.PartenzaActivity" />
         <activity android:name=".pagine_punti.PassaggioSuStradaFossadelloActivity" />
+        <activity android:name=".pagine_punti.PaesaggioFluvialeActivity" />
         <activity android:name=".pagine_punti.PonteAutostradaActivity" />
         <activity android:name=".pagine_punti.PonteAVActivity" />
         <activity android:name=".pagine_punti.PonteDelleCeramicheActivity" />
