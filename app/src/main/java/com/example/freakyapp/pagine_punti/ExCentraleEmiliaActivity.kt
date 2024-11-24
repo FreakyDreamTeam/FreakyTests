@@ -1,3 +1,4 @@
+
 package com.example.freakyapp.pagine_punti
 
 import android.content.Intent
@@ -46,22 +47,19 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
 import com.example.freakyapp.R
 
-
 class ExCentraleEmiliaActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            centrale(window)
+            emilia(window)
         }
     }
 }
 
 @Composable
-fun centrale(window: Window){
-    val robotoFontFamily = FontFamily(
-        Font(R.font.roboto_light)
-    )
+fun emilia(window: Window){
+
 
     if(isSystemInDarkTheme()){
         window.navigationBarColor = colorResource(R.color.verdenegro).toArgb()
@@ -74,20 +72,20 @@ fun centrale(window: Window){
 
             // Titolo con stile coerente
             Text(
-                text = "Ex centrale Emilia",
+                text = "Ex Centrale Emilia",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
                 modifier = Modifier.padding(top = 32.dp, bottom = 8.dp, start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Justify,
-                lineHeight = 24.sp,
+                textAlign = TextAlign.Center,
+                lineHeight = 30.sp,
                 letterSpacing = 0.5.sp
             )
 
             Box(modifier = Modifier.padding(bottom = 4.dp, start = 32.dp, end = 32.dp)){
                 Image(
                     painter = painterResource(R.drawable.ex_centrale_elettrica),
-                    contentDescription = "emilia",
+                    contentDescription = "",
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(3f / 2f)
@@ -101,14 +99,19 @@ fun centrale(window: Window){
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "L’impianto occupa un’area complessiva di 26.000 mq, di cui oltre 6.700 coperti. Tutti gli edifici che compongono l’impianto presentano una struttura a travi e pilastri in calcestruzzo armato, abbinato ad un tamponamento in muratura di mattoni piani a riempimento delle specchiature individuate dalle intelaiature in calcestruzzo armato. Ciò rappresenta un’importante testimonianza dell’architettura industriale di quegli anni ed un rilevante esempio di applicazione sperimentale del calcestruzzo armato nell’edificazione industriale. Una radicale ristrutturazione venne effettuata nell’immediato dopoguerra con l’acquisizione di altri 30.000 mq d’area industriale. In perfetto stato di conservazione, gli edifici originari della centrale sono stati affiancati da numerosi fabbricati, ma continuano a rappresentare il momento culminante e conclusivo della prima architettura industriale piacentina. Nel 2003 la centrale è stata restituita al pubblico come ‘Officina della Luce’, uno spazio espositivo per l’arte contemporanea.",
-                fontSize = 16.sp,
+                text = "L’impianto occupa un’area complessiva di 26.000 mq, di cui oltre 6.700 coperti. Tutti gli edifici che compongono l’impianto presentano una struttura a travi e pilastri in calcestruzzo armato, abbinato ad un tamponamento in muratura di mattoni piani a riempimento delle specchiature individuate dalle intelaiature in calcestruzzo armato. Ciò rappresenta un’importante testimonianza dell’architettura industriale dei primi del ‘900 ed un rilevante esempio di applicazione sperimentale del calcestruzzo armato nell’edificazione industriale. Una radicale ristrutturazione venne effettuata nell’immediato dopoguerra con l’acquisizione di altri 30.000 mq d’area industriale. In perfetto stato di conservazione, gli edifici originari della centrale sono stati affiancati da numerosi fabbricati, ma continuano a rappresentare il momento culminante e conclusivo della prima architettura industriale piacentina. Nel 2003 la centrale è stata restituita al pubblico come ‘Officina della Luce’, uno spazio espositivo per l’arte contemporanea.",
                 color = Color.White,
                 modifier = Modifier
                     .padding(bottom = 4.dp, start = 32.dp, end = 32.dp),
                 textAlign = TextAlign.Justify,
-                fontFamily = robotoFontFamily
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+                letterSpacing = 0.5.sp
             )
+
+            Spacer(modifier = Modifier.height(8.dp))
         }
     } else {
         window.navigationBarColor = colorResource(R.color.verdechiaro).toArgb()
@@ -121,18 +124,20 @@ fun centrale(window: Window){
 
             // Titolo con stile coerente
             Text(
-                text = "Ex centrale Emilia",
+                text = "Ex Centrale Emilia",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier.padding(top = 32.dp, bottom = 8.dp, start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Justify,
+                textAlign = TextAlign.Center,
+                lineHeight = 30.sp,
+                letterSpacing = 0.5.sp
             )
 
             Box(modifier = Modifier.padding(bottom = 4.dp, start = 32.dp, end = 32.dp)){
                 Image(
-                    painter = painterResource(R.drawable.ex_centrale_elettrica),
-                    contentDescription = "emilia",
+                    painter = painterResource(R.drawable.trattoria_tonoli),
+                    contentDescription = "",
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(3f / 2f)
@@ -145,13 +150,19 @@ fun centrale(window: Window){
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "L’impianto occupa un’area complessiva di 26.000 mq, di cui oltre 6.700 coperti. Tutti gli edifici che compongono l’impianto presentano una struttura a travi e pilastri in calcestruzzo armato, abbinato ad un tamponamento in muratura di mattoni piani a riempimento delle specchiature individuate dalle intelaiature in calcestruzzo armato. Ciò rappresenta un’importante testimonianza dell’architettura industriale di quegli anni ed un rilevante esempio di applicazione sperimentale del calcestruzzo armato nell’edificazione industriale. Una radicale ristrutturazione venne effettuata nell’immediato dopoguerra con l’acquisizione di altri 30.000 mq d’area industriale. In perfetto stato di conservazione, gli edifici originari della centrale sono stati affiancati da numerosi fabbricati, ma continuano a rappresentare il momento culminante e conclusivo della prima architettura industriale piacentina. Nel 2003 la centrale è stata restituita al pubblico come ‘Officina della Luce’, uno spazio espositivo per l’arte contemporanea.",
-                fontSize = 18.sp,
+                text = "L’impianto occupa un’area complessiva di 26.000 mq, di cui oltre 6.700 coperti. Tutti gli edifici che compongono l’impianto presentano una struttura a travi e pilastri in calcestruzzo armato, abbinato ad un tamponamento in muratura di mattoni piani a riempimento delle specchiature individuate dalle intelaiature in calcestruzzo armato. Ciò rappresenta un’importante testimonianza dell’architettura industriale dei primi del ‘900 ed un rilevante esempio di applicazione sperimentale del calcestruzzo armato nell’edificazione industriale. Una radicale ristrutturazione venne effettuata nell’immediato dopoguerra con l’acquisizione di altri 30.000 mq d’area industriale. In perfetto stato di conservazione, gli edifici originari della centrale sono stati affiancati da numerosi fabbricati, ma continuano a rappresentare il momento culminante e conclusivo della prima architettura industriale piacentina. Nel 2003 la centrale è stata restituita al pubblico come ‘Officina della Luce’, uno spazio espositivo per l’arte contemporanea.",
                 color = Color.Black,
                 modifier = Modifier
                     .padding(bottom = 4.dp, start = 32.dp, end = 32.dp),
-                textAlign = TextAlign.Justify
+                textAlign = TextAlign.Justify,
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+                letterSpacing = 0.5.sp
             )
+
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }

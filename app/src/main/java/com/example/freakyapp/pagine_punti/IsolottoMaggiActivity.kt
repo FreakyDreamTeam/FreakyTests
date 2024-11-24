@@ -65,7 +65,7 @@ fun maggi(window: Window){
 
             // Titolo con stile coerente
             Text(
-                text = "Centro sportivo Nino Bixio",
+                text = "Isolotto Maggi",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
@@ -77,8 +77,8 @@ fun maggi(window: Window){
 
             Box(modifier = Modifier.padding(bottom = 4.dp, start = 32.dp, end = 32.dp)){
                 Image(
-                    painter = painterResource(R.drawable.nino_bixio),
-                    contentDescription = "Nino Bixio",
+                    painter = painterResource(R.drawable.isolotto_maggi),
+                    contentDescription = "Isolotto Maggi",
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(3f / 2f)
@@ -120,7 +120,7 @@ fun maggi(window: Window){
 
             // Titolo con stile coerente
             Text(
-                text = "Centro sportivo Nino Bixio",
+                text = "Isolotto Maggi",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
@@ -132,8 +132,8 @@ fun maggi(window: Window){
 
             Box(modifier = Modifier.padding(bottom = 4.dp, start = 32.dp, end = 32.dp)){
                 Image(
-                    painter = painterResource(R.drawable.nino_bixio),
-                    contentDescription = "Nino Bixio",
+                    painter = painterResource(R.drawable.isolotto_maggi),
+                    contentDescription = "Isolotto Maggi",
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(3f / 2f)
