@@ -41,7 +41,6 @@ import com.example.freakyapp.pagine_punti.IsolaSerafiniActivity
 import com.example.freakyapp.pagine_punti.OasiNaturalisticaPinedoActivity
 import com.example.freakyapp.pagine_punti.CentraleTermoelettricaLevanteActivity
 import com.example.freakyapp.pagine_punti.LeapActivity
-import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroBorgoforteActivity
 import com.example.freakyapp.pagine_punti.DepuratoreBorgoforteActivity
 import com.example.freakyapp.pagine_punti.TermovalorizzatoreBorgoforteActivity
 import com.example.freakyapp.pagine_punti.CentraleIdroelettricaIsolaSerafiniActivity
@@ -85,7 +84,6 @@ class LocationService : Service() {
     private var proximityNotifiedOasiNaturalisticaPinedo = false
     private var proximityNotifiedCentraleTermoelettricaLevante = false
     private var proximityNotifiedLeap = false
-    private var proximityNotifiedImpiantoIdrovoroBorgoforte = false
     private var proximityNotifiedDepuratoreBorgoforte = false
     private var proximityNotifiedTermovalorizzatoreBorgoforte = false
     private var proximityNotifiedCentraleIdroelettricaIsolaSerafini = false
@@ -204,9 +202,9 @@ class LocationService : Service() {
         val fontanellaRoncarolo = Pair(45.0655013, 9.8390417)  // Fontanella Roncarolo (ANCHE IN TURISMO)
         val areaSostaSNazzaro = Pair(45.0768997, 9.8943338)  // Area sosta S. Nazzaro (ANCHE IN TURISMO)
         val ponteSNazzaro = Pair(45.081887347122866, 9.898561404386227)  // Ponte S. Nazzaro
-        val passaggioSuStradaFossadello = Pair(45.081887347122866, 9.898561404386227)  // Passaggio su strada Fossadello
-        val partenza = Pair(45.055930, 9.702823)  // Partenza
-        val ciclabilePonteSRocco = Pair(45.055930, 9.702823)  // Ciclabile Ponte S. Rocco
+        val passaggioSuStradaFossadello = Pair(45.04405505345128, 9.800038146921855)  // Passaggio su strada Fossadello
+        val partenza = Pair(45.0514172643141, 9.705647418826294)  // Partenza
+        val ciclabilePonteSRocco = Pair(45.064704, 9.706156)  // Ciclabile Ponte S. Rocco
         val discesaDalPonte = Pair(45.058143, 9.700901)  // Discesa dal ponte
 
         // Paesaggio naturale e biodiversità
@@ -217,9 +215,8 @@ class LocationService : Service() {
         val impiantoIdrovoroFinarda = Pair(45.055291, 9.714616)  // Impianto idrovoro Finarda
         val centraleTermoelettricaLevante = Pair(45.05592174155956, 9.707834527001006)  // Centrale termoelettrica ex "Levante"
         val leap = Pair(45.058188224501244, 9.705801096960299)  // LEAP
-        val impiantoIdrovoroBorgoforte = Pair(45.05750958022169, 9.733062031555836)  // Impianto idrovoro Borgoforte
         val depuratoreBorgoforte = Pair(45.05949270337371, 9.732816388159177)  // Depuratore Borgoforte
-        val termovalorizzatoreBorgoforte = Pair(45.05949270337371, 9.732816388159177)  // Termovalorizzatore Borgoforte
+        val termovalorizzatoreBorgoforte = Pair(45.05750958022169, 9.733062031555836)  // Termovalorizzatore Borgoforte
         val centraleIdroelettricaIsolaSerafini = Pair(45.09478508718558, 9.904594069179499)  // Centrale idroelettrica Isola Serafini
         val impiantoIdrovoroArmalunga = Pair(45.05521654110569, 9.800781841884934) //Impianto idrovoro di Armalunga
         val impiantoIdrovoroConsorzioMuzio = Pair(45.105883386456426, 9.736189359512233)  // Impianto idrovoro del Consorzio Muzio
@@ -426,14 +423,6 @@ class LocationService : Service() {
                     targetActivity = LeapActivity::class.java
                 )
             }
-            isWithinRange(lat, long, impiantoIdrovoroBorgoforte.first, impiantoIdrovoroBorgoforte.second, proximityThreshold) && !proximityNotifiedImpiantoIdrovoroBorgoforte -> {
-                proximityNotifiedImpiantoIdrovoroBorgoforte = true
-                sendNotification(
-                    title = "Sei vicino all'Impianto idrovoro Borgoforte",
-                    message = "Tocca per aprire",
-                    targetActivity = ImpiantoIdrovoroBorgoforteActivity::class.java
-                )
-            }
             isWithinRange(lat, long, depuratoreBorgoforte.first, depuratoreBorgoforte.second, proximityThreshold) && !proximityNotifiedDepuratoreBorgoforte -> {
                 proximityNotifiedDepuratoreBorgoforte = true
                 sendNotification(
@@ -578,7 +567,6 @@ class LocationService : Service() {
             !isWithinRange(lat, long, oasiNaturalisticaPinedo.first, oasiNaturalisticaPinedo.second, proximityThreshold) -> proximityNotifiedOasiNaturalisticaPinedo = false
             !isWithinRange(lat, long, centraleTermoelettricaLevante.first, centraleTermoelettricaLevante.second, proximityThreshold) -> proximityNotifiedCentraleTermoelettricaLevante = false
             !isWithinRange(lat, long, leap.first, leap.second, proximityThreshold) -> proximityNotifiedLeap = false
-            !isWithinRange(lat, long, impiantoIdrovoroBorgoforte.first, impiantoIdrovoroBorgoforte.second, proximityThreshold) -> proximityNotifiedImpiantoIdrovoroBorgoforte = false
             !isWithinRange(lat, long, depuratoreBorgoforte.first, depuratoreBorgoforte.second, proximityThreshold) -> proximityNotifiedDepuratoreBorgoforte = false
             !isWithinRange(lat, long, termovalorizzatoreBorgoforte.first, termovalorizzatoreBorgoforte.second, proximityThreshold) -> proximityNotifiedTermovalorizzatoreBorgoforte = false
             !isWithinRange(lat, long, centraleIdroelettricaIsolaSerafini.first, centraleIdroelettricaIsolaSerafini.second, proximityThreshold) -> proximityNotifiedCentraleIdroelettricaIsolaSerafini = false

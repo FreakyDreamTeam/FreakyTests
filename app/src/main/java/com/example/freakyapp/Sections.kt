@@ -40,7 +40,6 @@ import com.example.freakyapp.pagine_punti.FinestraSulPoActivity
 import com.example.freakyapp.pagine_punti.FloraActivity
 import com.example.freakyapp.pagine_punti.FontanellaRoncaroloActivity
 import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroArmalungaActivity
-import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroBorgoforteActivity
 import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroConsorzioMuzioActivity
 import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroFinardaActivity
 import com.example.freakyapp.pagine_punti.IsolaSerafiniActivity
