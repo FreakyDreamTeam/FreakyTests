@@ -263,7 +263,7 @@ fun SectionPaesaggio() {
         SectionItemActivity(
             imageRes = R.drawable.isola_serafini,
             title = "Isola Serafini",
-            description = "Nell’isola Serafini la flora presenta numerose specie di uccelli sia stanziali che migratori come rondini di mare, fraticelli, falchi, gufi, picchi e gruccioni.Per la peculiare calma e bellezza del paesaggio fluviale, oltre che la possibilità di osservare da vicino varie specie protette di uccelli acquatici, Isola Serafini è consigliata agli amanti della natura per un’escursione…",
+            description = "Nell’isola Serafini la flora presenta numerose specie di uccelli sia stanziali che migratori come rondini di mare, fraticelli, falchi, gufi, picchi e gruccioni. Per la peculiare calma e bellezza del paesaggio fluviale, oltre che la possibilità di osservare da vicino varie specie protette di uccelli acquatici, Isola Serafini è consigliata agli amanti della natura per un’escursione…",
             targetActivity = IsolaSerafiniActivity::class.java
         )
 
@@ -271,8 +271,8 @@ fun SectionPaesaggio() {
 
         SectionItemActivity(
             imageRes = R.drawable.oasi_pinedo,
-            title = "Oasi naturalistica dell'Isola del Pinedo",
-            description = "Nell’oasi de pinedo sono comuni il falco di palude e l’airone rosso. Si annoverano inoltre vari rapaci e la specie in via d’estinzione della Rana Latastei. Riscontriamo poi lucci, carpe, tinche, lasche, alborelle e molti altri animali acquatici.  Il divieto di caccia e di pesca e l’assenza di strutture artificiali immergono lo spettatore nella natura…",
+            title = "Oasi de Pinedo",
+            description = "Nell’Oasi de Pinedo sono comuni il falco di palude e l’airone rosso. Si annoverano inoltre vari rapaci e la specie in via d’estinzione della Rana Latastei. Riscontriamo poi lucci, carpe, tinche, lasche, alborelle e molti altri animali acquatici.  Il divieto di caccia e di pesca e l’assenza di strutture artificiali immergono lo spettatore nella natura…",
             targetActivity = OasiNaturalisticaPinedoActivity::class.java
         )
 
@@ -724,7 +724,7 @@ fun SectionTurismo() {
 
         SectionItemActivity(
             imageRes = R.drawable.magaton,
-            title = "Trattoria Magaton",
+            title = "Magaton",
             description = "La trattoria Magaton è un luogo di ristoro situato nei pressi di Roncarolo (PC). Per raggiungere il seguente luogo è necessario percorrere un tratto di strada Argine Po. All’interno di questa struttura è possibile usufruire di servizi culinari a base di pesce pescato direttamente dal fiume. Inoltre la posizione del Magaton è favorevole anche a…",
             targetActivity = TrattoriaMagatonActivity::class.java
         )
@@ -742,7 +742,7 @@ fun SectionTurismo() {
 
         SectionItemActivity(
             imageRes = R.drawable.trattoria_dei_viaggiatori,
-            title = "Trattoria dei viaggiatori",
+            title = "Trattoria dei Viaggiatori",
             description = "La Trattoria dei Viaggiatori, situata a Caselle Landi, è un punto di riferimento per chi cerca i sapori autentici della cucina tradizionale lodigiana. Il locale, accogliente e recentemente rinnovato, propone piatti caserecci preparati con ingredienti freschi, inclusi dolci e pane fatti in casa. La gestione attenta della signora Chicca e la qualità dei piatti, come...",
             targetActivity = TrattoriaDeiViaggiatoriActivity::class.java
         )
@@ -760,7 +760,7 @@ fun SectionTurismo() {
 
         SectionItemActivity(
             imageRes = R.drawable.chalet_po,
-            title = "Trattoria Chalet sul Po",
+            title = "Chalet sul Po",
             description = "Lo Chalet sul fiume Po oltre ad essere un’ osteria funge anche da bar. Uno dei suoi punti forti è sicuramente il paesaggio mozzafiato sulle sponde del Po che è caratterizzato da numerose colline verdi. E’ conosciuto per il servizio veloce e l’accoglienza calorosa da parte del titolare. La maggior parte dei piatti che può…",
             targetActivity = TrattoriaChaletSulPoActivity::class.java
         )
@@ -770,8 +770,7 @@ fun SectionTurismo() {
         SectionItemActivity(
             imageRes = R.drawable.tana_roncarolo,
             title = "La tana di Roncarolo",
-            description = "La tana di Roncarolo, oltre ad essere un circolo di pesca, funge anche da punto di ritrovo e banchetto per i tesserati. Il luogo è situato sulle rive del Po e oltre alla struttura in cui poter mangiare, è presente anche un attracco per barche in cui poter pescare data la posizione favorevole per la…" +
-                    "",
+            description = "La tana di Roncarolo, oltre ad essere un circolo di pesca, funge anche da punto di ritrovo e banchetto per i tesserati. Il luogo è situato sulle rive del Po e oltre alla struttura in cui poter mangiare, è presente anche un attracco per barche in cui poter pescare data la posizione favorevole per la…",
             targetActivity = TanaDiRoncaroloActivity::class.java
         )
 
@@ -779,7 +778,7 @@ fun SectionTurismo() {
 
         SectionItemActivity(
             imageRes = R.drawable.milanista,
-            title = "Trattoria il Milanista",
+            title = "Il Milanista",
             description = "La Dondè Trattoria, anche conosciuta come “Il Milanista”, si trova a San Nazzaro, in Emilia Romagna, Italia. Questa accogliente trattoria è rinomata per la sua eccellente pizza. Il personale amichevole lavora sodo per garantire un servizio impeccabile e contribuisce a creare un’atmosfera meravigliosa. Gli ospiti possono godersi una tranquilla atmosfera durante il loro soggiorno. Per…",
             targetActivity = TrattoriaIlMilanistaActivity::class.java
         )
