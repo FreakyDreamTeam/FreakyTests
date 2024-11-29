@@ -72,7 +72,8 @@ dependencies {
     // Dipendenze per le notifiche
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.core:core:1.10.1")
-    implementation(libs.androidx.appcompat) // Per assicurarsi che `NotificationCompat` sia disponibile
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.ui.test.junit4.android) // Per assicurarsi che `NotificationCompat` sia disponibile
 
     // Dipendenze per i test
     testImplementation(libs.junit)

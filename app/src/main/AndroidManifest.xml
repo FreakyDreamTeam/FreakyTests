@@ -51,7 +51,7 @@
         <activity android:name=".pagine_punti.FloraActivity" />
         <activity android:name=".pagine_punti.FaunaActivity" />
         <activity android:name=".pagine_punti.FontanellaRoncaroloActivity" />
-        <activity android:name=".pagine_punti.ImpiantoIdrovoroBorgoforteActivity" />
+        <activity android:name=".EsciDialog" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroArmalungaActivity" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroConsorzioMuzioActivity" />
         <activity android:name=".pagine_punti.ImpiantoIdrovoroFinardaActivity" />

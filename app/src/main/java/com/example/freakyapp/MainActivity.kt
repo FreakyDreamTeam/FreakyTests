@@ -3,35 +3,28 @@ package com.example.freakyapp
 import Sections
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.preference.PreferenceManager
+import android.os.Build
 import android.view.Window
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -41,35 +34,34 @@ import org.osmdroid.config.Configuration
 
 class MainActivity : ComponentActivity() {
 
+    private val showDialog = mutableStateOf(false)
+
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             val allGranted = permissions.values.all { it }
             if (allGranted) {
-                // Tutti i permessi sono stati concessi
+                // Tutti i permessi sono stati concessi, avvia il servizio
                 startLocationService()
             } else {
-                // Mostra il dialog prima di chiudere l'app
-                runOnUiThread {
-                    showPermissionRequiredDialog()
-                }
+                showDialog.value = true
             }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge()  // Impostazione per il layout edge-to-edge
         setContent {
             FreakyAppTheme {
-                MainScreen(window)
+                MainScreen(window) // Imposta il contenuto della schermata principale
             }
         }
 
         // Controlla i permessi all'avvio
         if (!areAllPermissionsGranted()) {
-            // Richiedi i permessi
+            // Richiedi i permessi se non sono già concessi
             requestPermissions()
         } else {
-            // Avvia il servizio solo se i permessi sono concessi
+            // Avvia il servizio se i permessi sono concessi
             startLocationService()
         }
     }
@@ -80,7 +72,6 @@ class MainActivity : ComponentActivity() {
             android.Manifest.permission.ACCESS_COARSE_LOCATION,
             android.Manifest.permission.POST_NOTIFICATIONS
         )
-
         return permissions.all { permission ->
             ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
         }
@@ -103,68 +94,80 @@ class MainActivity : ComponentActivity() {
         startService(intent)
     }
 
-    private fun showPermissionRequiredDialog() {
-        runOnUiThread {
-            AlertDialog.Builder(this)
-                .setTitle("Permessi richiesti")
-                .setMessage("Devi concedere i permessi per usare questa app. Vuoi riprovare?")
-                .setCancelable(false)
-                .setPositiveButton("Riprova") { _, _ ->
-                    // Richiedi i permessi di nuovo
-                    requestPermissions()
-                }
-                .setNegativeButton("Esci") { _, _ ->
-                    // Chiudi l'app
-                    finishApp()
-                }
-                .show()
-        }
-
-    }
 
     private fun finishApp() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             finishAndRemoveTask()
         } else {
             finish()
         }
     }
-}
 
 
-@Composable
-fun MainScreen(window: Window) {
-    // Ottieni il contesto
-    val navController = rememberNavController()
+    @Composable
+    fun MainScreen(window: Window) {
+        if(showDialog.value){
+            AlertDialog(
+                onDismissRequest = { showDialog.value = false },
+                title = { Text("Permessi richiesti") },
+                text = { Text("Devi concedere i permessi per usare questa app. Vuoi riprovare?") },
+                confirmButton = {
+                    Button(onClick = {
+                        showDialog.value = false
+                        requestPermissions()
+                    }
+                    ) {
+                        Text("OK")
 
-    Scaffold(
-        bottomBar = {
-            MyBottomAppBar()
-        },
-        modifier = Modifier
-            .windowInsetsPadding(WindowInsets.navigationBars) // Considera la barra di navigazione per il layout
-    ) { innerPadding ->
-
-        if(isSystemInDarkTheme()){
-            window.navigationBarColor = colorResource(R.color.verdenegro).toArgb()
-        }else{
-            window.navigationBarColor = colorResource(R.color.verdechiaro).toArgb()
+                    }
+                },
+                dismissButton = {
+                    Button(onClick = {
+                        showDialog.value = false
+                        finishApp()
+                    }) {
+                        Text("Annulla")
+                    }
+                }
+            )
         }
 
-        Box(
+
+        // Ottieni il contesto per la navigazione
+        val navController = rememberNavController()
+
+        Scaffold(
+            bottomBar = {
+                MyBottomAppBar()
+            },
             modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            NavHost(
-                navController = navController,
-                startDestination = "home"
+                .windowInsetsPadding(WindowInsets.navigationBars) // Considera la barra di navigazione per il layout
+        ) { innerPadding ->
+
+            // Imposta il colore della barra di navigazione in base al tema
+            if (isSystemInDarkTheme()) {
+                window.navigationBarColor = colorResource(R.color.verdenegro).toArgb()
+            } else {
+                window.navigationBarColor = colorResource(R.color.verdechiaro).toArgb()
+            }
+
+            // Layout della schermata principale
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
             ) {
-                composable("home") { Home() }
-                composable("map") { Map(navController) }
-                composable("sections") { Sections() }
+                NavHost(
+                    navController = navController,
+                    startDestination = "home"
+                ) {
+                    composable("home") { Home() }
+                    composable("map") { Map(navController) }
+                    composable("sections") { Sections() }
+                }
             }
         }
     }
+
 }
 
