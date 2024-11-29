@@ -56,14 +56,7 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        // Controlla i permessi all'avvio
-        if (!areAllPermissionsGranted()) {
-            // Richiedi i permessi se non sono già concessi
-            requestPermissions()
-        } else {
-            // Avvia il servizio se i permessi sono concessi
-            startLocationService()
-        }
+
     }
 
     private fun areAllPermissionsGranted(): Boolean {
@@ -103,9 +96,46 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private val info = mutableStateOf(true)
 
     @Composable
     fun MainScreen(window: Window) {
+
+        // Controlla i permessi all'avvio
+        if (!areAllPermissionsGranted()) {
+            AlertDialog(
+                onDismissRequest = { info.value = false  },
+                title = { Text("IMPORTANTE!! Permessi richiesti") },
+                text = { Text("Devi concedere i permessi per usare questa app.") },
+                confirmButton = {
+                    Button(onClick = {
+                        info.value = false
+                        requestPermissions()
+                    }
+                    ) {
+                        Text("OK")
+
+                    }
+                },
+                dismissButton = {
+                    Button(onClick = {
+                        info.value = false
+                        finishApp()
+                    }) {
+                        Text("Annulla")
+                    }
+                }
+            )
+        } else {
+            // Avvia il servizio se i permessi sono concessi
+            startLocationService()
+        }
+
+        //if(info.value){
+
+        //}
+
+
         if(showDialog.value){
             AlertDialog(
                 onDismissRequest = { showDialog.value = false },
@@ -113,8 +143,8 @@ class MainActivity : ComponentActivity() {
                 text = { Text("Devi concedere i permessi per usare questa app. Vuoi riprovare?") },
                 confirmButton = {
                     Button(onClick = {
-                        showDialog.value = false
                         requestPermissions()
+                        showDialog.value = false
                     }
                     ) {
                         Text("OK")
