@@ -102,66 +102,63 @@ class MainActivity : ComponentActivity() {
     fun MainScreen(window: Window) {
 
         // Controlla i permessi all'avvio
-        if (!areAllPermissionsGranted()) {
-            AlertDialog(
-                onDismissRequest = { info.value = false  },
-                title = { Text("IMPORTANTE!! Permessi richiesti") },
-                text = { Text("Devi concedere i permessi per usare questa app.") },
-                confirmButton = {
-                    Button(onClick = {
-                        info.value = false
-                        requestPermissions()
-                    }
-                    ) {
-                        Text("OK")
+        if (!areAllPermissionsGranted() ) {
+            if(info.value){
+                AlertDialog(
+                    onDismissRequest = { info.value = false  },
+                    title = { Text("IMPORTANTE!! Permessi richiesti") },
+                    text = { Text("Devi concedere i permessi per usare questa app.") },
+                    confirmButton = {
+                        Button(onClick = {
+                            info.value = false
+                            requestPermissions()
+                        }
+                        ) {
+                            Text("OK")
 
+                        }
+                    },
+                    dismissButton = {
+                        Button(onClick = {
+                            info.value = false
+                            finishApp()
+                        }) {
+                            Text("Annulla")
+                        }
                     }
-                },
-                dismissButton = {
-                    Button(onClick = {
-                        info.value = false
-                        finishApp()
-                    }) {
-                        Text("Annulla")
-                    }
+                )
+            } else {
+                if(showDialog.value){
+                    AlertDialog(
+                        onDismissRequest = { showDialog.value = false },
+                        title = { Text("Permessi richiesti") },
+                        text = { Text("Devi concedere i permessi per usare questa app. Vuoi riprovare?") },
+                        confirmButton = {
+                            Button(onClick = {
+                                requestPermissions()
+                                showDialog.value = false
+                            }
+                            ) {
+                                Text("OK")
+
+                            }
+                        },
+                        dismissButton = {
+                            Button(onClick = {
+                                showDialog.value = false
+                                finishApp()
+                            }) {
+                                Text("Annulla")
+                            }
+                        }
+                    )
                 }
-            )
+            }
+
         } else {
             // Avvia il servizio se i permessi sono concessi
             startLocationService()
         }
-
-        //if(info.value){
-
-        //}
-
-
-        if(showDialog.value){
-            AlertDialog(
-                onDismissRequest = { showDialog.value = false },
-                title = { Text("Permessi richiesti") },
-                text = { Text("Devi concedere i permessi per usare questa app. Vuoi riprovare?") },
-                confirmButton = {
-                    Button(onClick = {
-                        requestPermissions()
-                        showDialog.value = false
-                    }
-                    ) {
-                        Text("OK")
-
-                    }
-                },
-                dismissButton = {
-                    Button(onClick = {
-                        showDialog.value = false
-                        finishApp()
-                    }) {
-                        Text("Annulla")
-                    }
-                }
-            )
-        }
-
 
         // Ottieni il contesto per la navigazione
         val navController = rememberNavController()
