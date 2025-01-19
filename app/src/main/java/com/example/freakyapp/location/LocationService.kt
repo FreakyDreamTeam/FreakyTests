@@ -47,6 +47,7 @@ import com.example.freakyapp.pagine_punti.CentraleIdroelettricaIsolaSerafiniActi
 import com.example.freakyapp.pagine_punti.ImpiantoIdrovoroConsorzioMuzioActivity
 import com.example.freakyapp.pagine_punti.FinestraSulPoActivity
 import com.example.freakyapp.pagine_punti.AgriturismoBoschiCelatiActivity
+import com.example.freakyapp.pagine_punti.BibliotecaActivity
 import com.example.freakyapp.pagine_punti.TrattoriaMagatonActivity
 import com.example.freakyapp.pagine_punti.TrattoriaTonoliActivity
 import com.example.freakyapp.pagine_punti.TrattoriaDeiViaggiatoriActivity
@@ -99,6 +100,7 @@ class LocationService : Service() {
     private var proximityNotifiedTrattoriaIlMilanista = false
     private var proximityNotifiedTrattoriaCattivelli = false
     private var proximityNotifiedDistributoreAcquaMortizza = false
+    private var proximityBiblioteca = false
 
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -232,6 +234,8 @@ class LocationService : Service() {
         val trattoriaIlMilanista = Pair(45.07589139606873, 9.895138352448015)  // Trattoria Il Milanista
         val distributoreAcquaMortizza = Pair(45.07815930003141, 9.756850391)  // Distributore d'acqua Mortizza
         val trattoriaCattivelli = Pair(45.09687901677327, 9.905943726049475) //Trattoria Cattivelli
+
+        val biblioteca = Pair(45.05249684755601, 9.69615493573901);
 
         val proximityThreshold = 0.001801801 // 200 metri - Tolleranza per la distanza (in gradi lat-long, distanza desiderata(metri)/distanza per grado(111000 metri)
         val thresh400 = 0.003603603 //400 metri
@@ -547,6 +551,15 @@ class LocationService : Service() {
                 )
             }
 
+            isWithinRange(lat, long, biblioteca.first, biblioteca.second, proximityThreshold) && !proximityBiblioteca -> {
+                proximityBiblioteca = true
+                sendNotification(
+                    title = "Sei vicino alla Biblioteca Passerini-Landi!",
+                    message = "Tocca per aprire",
+                    targetActivity = BibliotecaActivity::class.java
+                )
+            }
+
             !isWithinRange(lat, long, stazionePC.first, stazionePC.second, proximityThreshold) -> proximityNotifiedStazionePC = false
             !isWithinRange(lat, long, torrioneFodesta.first, torrioneFodesta.second, proximityThreshold) -> proximityNotifiedTorrioneFodesta = false
             !isWithinRange(lat, long, exCentraleEmilia.first, exCentraleEmilia.second, proximityThreshold) -> proximityNotifiedExCentraleEmilia = false
@@ -585,6 +598,8 @@ class LocationService : Service() {
             !isWithinRange(lat, long, trattoriaIlMilanista.first, trattoriaIlMilanista.second, proximityThreshold) -> proximityNotifiedTrattoriaIlMilanista = false
             !isWithinRange(lat, long, trattoriaCattivelli.first, trattoriaCattivelli.second, proximityThreshold) -> proximityNotifiedTrattoriaCattivelli = false
             !isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, thresh400) -> proximityNotifiedDistributoreAcquaMortizza = false
+
+            !isWithinRange(lat, long, biblioteca.first, biblioteca.second, proximityThreshold) -> proximityBiblioteca = false
         }
     }
 

@@ -79,6 +79,10 @@
         <activity android:name=".pagine_punti.TrattoriaMagatonActivity" />
         <activity android:name=".pagine_punti.TrattoriaTonoliActivity" />
         <activity android:name=".pagine_punti.TrattoriaCattivelliActivity" />
+
+        <activity android:name=".pagine_punti.BrescelloActivity" />
+        <activity android:name=".pagine_punti.BibliotecaActivity" />
+
         <service
             android:name=".location.LocationService"
             android:foregroundServiceType="location" />
