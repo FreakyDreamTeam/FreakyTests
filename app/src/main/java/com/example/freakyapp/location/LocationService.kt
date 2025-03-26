@@ -551,7 +551,7 @@ class LocationService : Service() {
                 )
             }
 
-            isWithinRange(lat, long, biblioteca.first, biblioteca.second, proximityThreshold) && !proximityBiblioteca -> {
+            isWithinRange(lat, long, biblioteca.first, biblioteca.second, thresh550) && !proximityBiblioteca -> {
                 proximityBiblioteca = true
                 sendNotification(
                     title = "Sei vicino alla Biblioteca Passerini-Landi!",
@@ -599,7 +599,7 @@ class LocationService : Service() {
             !isWithinRange(lat, long, trattoriaCattivelli.first, trattoriaCattivelli.second, proximityThreshold) -> proximityNotifiedTrattoriaCattivelli = false
             !isWithinRange(lat, long, distributoreAcquaMortizza.first, distributoreAcquaMortizza.second, thresh400) -> proximityNotifiedDistributoreAcquaMortizza = false
 
-            !isWithinRange(lat, long, biblioteca.first, biblioteca.second, proximityThreshold) -> proximityBiblioteca = false
+            !isWithinRange(lat, long, biblioteca.first, biblioteca.second, thresh550) -> proximityBiblioteca = false
         }
     }
 
